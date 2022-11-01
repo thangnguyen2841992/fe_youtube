@@ -1,0 +1,71 @@
+<!--<div class="w3-top" >-->
+<!--  <div class="w3-bar w3-theme-d2 w3-left-align w3-large"style="color: white" >-->
+<!--    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><img  src="assets/customer-template/img/youtube.png" style="height: 30px">  </a>-->
+<!--    <div class="w3-dropdown-hover w3-hide-small" style="margin-left: 1670px">-->
+<!--      <button  class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>-->
+<!--      <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">-->
+<!--        <a href="#" class="w3-bar-item w3-button">One new friend request</a>-->
+<!--        <a href="#" class="w3-bar-item w3-button">John Doe posted on your wall</a>-->
+<!--        <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="dropdown" style="float: right; margin-right: 30px; margin-bottom: 7px">-->
+<!--                  <a href="#" id="imageDropdown" data-toggle="dropdown">-->
+<!--                    <img src="http://localhost:8080/image/{{user.avatar}}" style="width: 40px;  border-radius: 50%; height: auto; margin-top: 10px">-->
+<!--                  </a>-->
+<!--                  <ul class="dropdown-menu" role="menu" aria-labelledby="imageDropdown">-->
+<!--                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 1</a></li>-->
+<!--                    <li role="presentation"><a (click)="logout()" role="menuitem" tabindex="-1" href="#">Đăng xuất</a></li>-->
+<!--                    <li role="presentation"><a  role="menuitem" tabindex="-1" href="#">Tạo video mới</a></li>-->
+<!--                    <li role="presentation" class="divider"></li>-->
+<!--                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 4</a></li>-->
+<!--                  </ul>-->
+<!--                </div>-->
+<!--  </div>-->
+<!--</div>-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light osahan-nav shadow-sm" >
+
+    <a class="navbar-brand" href="index.html" style="margin-left: 60px" ><img alt="logo" src="assets/customer-template/img/youtube.png" style="height: 60px"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" style="margin-top: 10px; margin-right: 600px">
+          <div class="input-group">
+            <div class="form-outline">
+              <input placeholder="Tìm kiếm"  type="search" size="50" id="form1" class="form-control" />
+            </div>
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" *ngIf="!loggedIn">Đăng nhập <span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item">
+          <div class="dropdown">
+            <a href="#" id="imageDropdown" data-toggle="dropdown" style="margin-right: 100px">
+              <img src="http://localhost:8080/image/{{user.avatar}}" style="width: 40px;  border-radius: 50%; height: auto; margin-top: 10px">
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="imageDropdown">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 1</a></li>
+              <li role="presentation"><a (click)="logout()" role="menuitem" tabindex="-1" href="#">Đăng xuất</a></li>
+              <li role="presentation"><a  role="menuitem" tabindex="-1" href="#">Tạo video mới</a></li>
+              <li role="presentation" class="divider"></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 4</a></li>
+            </ul>
+          </div>
+        </li>
+
+
+      </ul>
+    </div>
+
+
+</nav>
