@@ -16,4 +16,6 @@ export interface User {
   dateCreated?: string;
 
   roles?: Role[];
+
+  studioName?: string;
 }

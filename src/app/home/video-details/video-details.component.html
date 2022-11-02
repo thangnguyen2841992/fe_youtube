@@ -9,12 +9,12 @@
 <!-- !PAGE CONTENT! -->
 <div class="w3-main">
   <br>
-
+  <div class="row">
     <div class="col-md-9 col-sm-6 mb-4 pb-2">
       <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" >
         <div class="list-card-image">
-            <video width="1170" height="700" controls>
-              <source src="{{videoLink}}" type="video/mp4">
+            <video width="1200" height="700" controls>
+              <source src="{{video.url}}" type="video/mp4" formControlName="videoUrl">
             </video>
           <!--      <a routerLink="/home/food/{{dish.id}}" routerLinkActive="active">-->
           <!--        <img src="http://localhost:8080/image/{{dish.image}}" alt="" class="img-fluid item-img food-img">-->
@@ -23,9 +23,9 @@
 
         <div class="p-3 position-relative">
           <div class="list-card-body">
-            <h6 class="mb-1"><a routerLink="/home/food/{{video.id}}" class="text-black">{{video.name}}</a></h6>
-            <a routerLink="/home/merchant/{{video.user.id}}" class="merchant-name"><p class="text-gray mb-3 ">{{video.user.username}}</p></a>
-            <p class="text-gray mb-3 time">{{video.dateCreated}}</p>
+            <h4 class="mb-1"><a routerLink="/home/food/{{video.id}}" class="text-black">{{video.name}}</a></h4>
+            <a routerLink="/home/merchant/{{video.user.id}}" class="merchant-name"><h5 class="text-gray mb-3 "><img src="http://localhost:8080/image/{{video.user.avatar}}" style="width: 40px; border-radius: 50%"> {{video.user.studioName}} <i style="font-size: 13px" class="fa-solid fa-circle-check"></i></h5></a><span></span>
+            <p style="margin-left: 42px; margin-top: -25px" class="text-gray mb-3 time">{{video.dateCreated}}</p>
             <!--          class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i-->
             <!--          class="icofont-wall-clock"></i> 20–25 min</span> <span-->
             <!--          class="float-right text-black price">{{dish.price | number}}đ</span></p>-->
@@ -35,10 +35,40 @@
 
     </div>
     <!-- First Photo Grid-->
+    <div class="col-md-3">
+      <cdk-virtual-scroll-viewport itemSize="10" class="container-scroll-reply">
+      <div  *ngFor="let video of videos">
+          <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" >
+            <div class="list-card-image">
+              <a routerLink="/video/{{video.id}}" style="cursor: pointer">
+                <video width="365" height="200" >
+                  <source src="{{video.url}}" type="video/mp4">
+                </video>
+              </a>
+              <!--      <a routerLink="/home/food/{{dish.id}}" routerLinkActive="active">-->
+              <!--        <img src="http://localhost:8080/image/{{dish.image}}" alt="" class="img-fluid item-img food-img">-->
+              <!--      </a>-->
+            </div>
+            <div class="p-3 position-relative">
+              <div class="list-card-body">
+                <h5 class="mb-1"><a routerLink="/home/food/{{video.id}}" class="text-black">{{video.name}}</a></h5>
+                <a routerLink="/home/merchant/{{video.user.id}}" class="merchant-name"><h6 class="text-gray mb-3 "><img src="http://localhost:8080/image/{{video.user.avatar}}" style="width: 40px; border-radius: 50%"> {{video.user.studioName}} <i style="font-size: 13px" class="fa-solid fa-circle-check"></i></h6></a>
+                <p style="margin-left: 42px; margin-top: -25px" class="text-gray mb-3 time">{{video.dateCreated}}</p>
+                <!--          class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i-->
+                <!--          class="icofont-wall-clock"></i> 20–25 min</span> <span-->
+                <!--          class="float-right text-black price">{{dish.price | number}}đ</span></p>-->
+              </div>
+            </div>
+          </div>
 
+        </div>
+
+      </cdk-virtual-scroll-viewport>
+    </div>
 
   </div>
 
+</div>
 <script>
   // Script to open and close sidebar
   function w3_open() {

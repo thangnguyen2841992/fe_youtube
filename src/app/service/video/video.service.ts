@@ -12,8 +12,14 @@ export class VideoService {
 
   constructor(private http: HttpClient) { }
 
-  getAllVideo(): Observable<VideoResponse[]> {
-    return this.http.get<VideoResponse[]>(`${API_URL}`);
+  getAllVideo(userId: number): Observable<VideoResponse[]> {
+    return this.http.get<VideoResponse[]>(`${API_URL}/all/user/${userId}`);
+  }
+  getAllVideoByHastag(userId: number, hastagId: number): Observable<VideoResponse[]> {
+    return this.http.get<VideoResponse[]>(`${API_URL}/hastag/${hastagId}/user/${userId}`);
+  }
+  getAllVideoOtherUserOtherVideo(userId: number, videoId: number): Observable<VideoResponse[]> {
+    return this.http.get<VideoResponse[]>(`${API_URL}/user/${userId}/video/${videoId}`);
   }
   getVideoByVideoId(videoId: number): Observable<VideoResponse> {
     return this.http.get<VideoResponse>(`${API_URL}/video/${videoId}`);

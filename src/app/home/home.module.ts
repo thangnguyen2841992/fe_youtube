@@ -12,10 +12,12 @@ import {environment} from '../../environments/environment.prod';
 import {AngularFireStorage} from '@angular/fire/storage';
 import { TestComponent } from './test/test.component';
 import { VideoDetailsComponent } from './video-details/video-details.component';
+import { FindVideoByHastagComponent } from './find-video-by-hastag/find-video-by-hastag.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
 @NgModule({
-  declarations: [HomeComponent, VideoCreateComponent, TestComponent, VideoDetailsComponent],
+  declarations: [HomeComponent, VideoCreateComponent, TestComponent, VideoDetailsComponent, FindVideoByHastagComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -24,6 +26,7 @@ import { VideoDetailsComponent } from './video-details/video-details.component';
     FormsModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    ScrollingModule
   ],
   providers: [
     AngularFireStorage

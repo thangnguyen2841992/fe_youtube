@@ -6,9 +6,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto" style="margin-right: 50px">
+
         <li  class="nav-item active" *ngFor="let hastag of hastags">
-          <button  class="btn-navbar-home">{{hastag.name}}</button>
+          <a (click)="reloadComponent(hastag.id)" routerLink="/hastag/{{hastag.id}}" class="btn btn-navbar-home">{{hastag.name}}</a>
         </li>
+
       </ul>
     </div>
   </div>
