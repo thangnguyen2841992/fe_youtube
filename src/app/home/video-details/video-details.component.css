@@ -4,3 +4,37 @@
   height: 100%;
   display: block;
 }
+.container_swap{
+
+  width: 400px;
+
+}
+
+.div_left{
+  margin-left: -10px;
+  width: 300px;
+
+  float: left;
+
+  text-align: center;
+
+}
+.div_right {
+  width: 100px;
+
+  float: right;
+
+  text-align: center;
+}
+#subcrise {
+  margin-top: 10px;
+}
+#subcrise1 {
+  margin-top: 10px;
+}
+#date-created {
+  margin-left: -90px ;
+  margin-top: -20px;
+}
+
+

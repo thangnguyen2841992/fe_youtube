@@ -3,7 +3,7 @@ import {Hastag} from './hastag';
 import {User} from './user';
 
 export interface VideoResponse {
-   id?: number;
+  id?: number;
 
   name?: string;
 
@@ -16,4 +16,6 @@ export interface VideoResponse {
   hastag?: Hastag;
 
   user?: User;
+
+  totalSubscriber?: number;
 }

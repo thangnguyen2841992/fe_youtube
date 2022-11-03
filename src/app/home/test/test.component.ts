@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Video} from '../../model/video';
 import {VideoService} from '../../service/video/video.service';
 
@@ -10,14 +10,11 @@ import {VideoService} from '../../service/video/video.service';
 export class TestComponent implements OnInit {
 
   videos: Video[] = [];
-  constructor(private videoService: VideoService) { }
+
+  constructor(private videoService: VideoService) {
+  }
 
   ngOnInit() {
-    this.getAllVideo();
   }
-  getAllVideo() {
-    this.videoService.getAllVideo().subscribe((data) => {
-      this.videos = data;
-    });
-  }
+
 }
