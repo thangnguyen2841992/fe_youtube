@@ -4,18 +4,19 @@
 
 <body class="w3-light-grey w3-content" style="max-width:1600px;">
 <!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
+     title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main">
   <br>
   <div class="row">
     <div class="col-md-9 col-sm-6 mb-4 pb-2">
-      <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" >
+      <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
         <div class="list-card-image">
-            <video width="1200" height="700" controls>
-              <source src="{{video.url}}" type="video/mp4">
-            </video>
+          <video width="1200" height="700" controls>
+            <source src="{{videoUrl}}" type="video/mp4">
+          </video>
           <!--      <a routerLink="/home/food/{{dish.id}}" routerLinkActive="active">-->
           <!--        <img src="http://localhost:8080/image/{{dish.image}}" alt="" class="img-fluid item-img food-img">-->
           <!--      </a>-->
@@ -26,47 +27,96 @@
             <h4 class="mb-1"><a class="text-black">{{video.name}}</a></h4>
             <div class="container_swap">
               <div class="div_left">
-                <a><h5 class="text-gray mb-3 "><img src="http://localhost:8080/image/{{video.user.avatar}}" style="width: 40px; border-radius: 50%"> {{video.user.studioName}} <i style="font-size: 13px" class="fa-solid fa-circle-check"></i></h5></a>
-                <p id="date-created"  class="text-gray mb-3 time">{{video.totalSubscriber}} người đăng ký</p>
-                <p id="date-created1"  class="text-gray mb-3 time">{{video.dateCreated}}</p>
+                <a><h5 class="text-gray mb-3 "><img src="http://localhost:8080/image/{{video.user.avatar}}"
+                                                    style="width: 40px; border-radius: 50%"> {{video.user.studioName}}
+                  <i style="font-size: 13px" class="fa-solid fa-circle-check"></i></h5></a>
+                <p id="date-created" class="text-gray mb-3 time">{{video.totalSubscriber}} người đăng ký</p>
+                <p style="margin-left: -155px" id="date-created1" class="text-gray mb-3 time">{{video.dateCreated}}</p>
 
               </div>
-              <div class="div_right">
-                <button *ngIf="!checkSubscriber" (click)="addNewMember(video.user.id, currentUserId)" class="btn btn-dark" id="subcrise">Đăng ký</button>
-                <button  *ngIf="checkSubscriber"  class="btn btn-default" disabled id="subcrise1">Đã đăng ký</button>
+              <div class="div_left1">
+                <button style="margin-right: 40px" *ngIf="!checkSubscriber"
+                        (click)="addNewMember(video.user.id, currentUserId)" class="btn btn-dark" id="subcrise">Đăng ký
+                </button>
+                <div>
+                  <button *ngIf="checkSubscriber" class="btn btn-default" disabled id="subcrise1">Đã đăng ký</button>
+                  <span> </span>
+                </div>
+              </div>
+              <div class="div_left2">
+                <i style=" margin-left: 10px;margin-top: 20px; margin-left: -60px" class="fa-solid fa-bell"></i>
+              </div>
+              <div class="div_right1">
+                <button (click)="addNewLike(videoId, currentUserId)" class="btn btn-default"><i *ngIf="!isLikeVideo"
+                                                                                                class="fa-regular fa-thumbs-up"></i><i
+                  *ngIf="isLikeVideo" class="fa-solid fa-thumbs-up"></i> {{video.totalLike}}</button>
+                <button (click)="addNewDisLike(videoId, currentUserId)" class="btn btn-default"><i *ngIf="!isDisLike"
+                                                                                                   class="fa-regular fa-thumbs-down"></i><i
+                  *ngIf="isDisLike" class="fa-solid fa-thumbs-down"></i> {{video.totalDisLike}}</button>
               </div>
             </div>
-            <!--          class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i-->
-            <!--          class="icofont-wall-clock"></i> 20–25 min</span> <span-->
-            <!--          class="float-right text-black price">{{dish.price | number}}đ</span></p>-->
+            <div>
+            </div>
           </div>
         </div>
       </div>
+      <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+        <div class="container_swap1">
+          <div class="div_left3">
+            <h6>52 bình luận</h6>
+          </div>
+          <div class="div_left4">
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                <i class="fa-solid fa-arrow-up-wide-short"></i> Sắp xếp theo
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" type="button">Bình luận hàng đầu</button>
+                <button class="dropdown-item" type="button">Mới nhất xếp trước</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <div class="container_swap2">
+          <div class="div_left5">
+            <img src="http://localhost:8080/image/{{video.user.avatar}}"
+                 style="width: 40px; border-radius: 50%">
+          </div>
+          <div class="div_left6">
+            <textarea (click)="showButton()" class="content-comment" placeholder='Viết bình luận...'></textarea>
+            <button *ngIf="isShowButton" style="background-color: transparent;float: right" id='clear' class="btn btn-default">Huỷ</button>
+            <input *ngIf="isShowButton" style="background-color: transparent; float: right" type="submit" class="btn btn-default" value='Bình luận'>
+          </div>
+
+        </div>
+
+
+      </div>
     </div>
     <!-- First Photo Grid-->
     <div class="col-md-3">
       <cdk-virtual-scroll-viewport itemSize="10" class="container-scroll-reply">
-      <div  *ngFor="let video of videos">
-          <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" >
+        <div *ngFor="let video of videos">
+          <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
             <div class="list-card-image">
               <a routerLink="/video/{{video.id}}" style="cursor: pointer">
-                <video width="365" height="200" >
+                <video width="365" height="200">
                   <source src="{{video.url}}" type="video/mp4">
                 </video>
               </a>
-              <!--      <a routerLink="/home/food/{{dish.id}}" routerLinkActive="active">-->
-              <!--        <img src="http://localhost:8080/image/{{dish.image}}" alt="" class="img-fluid item-img food-img">-->
-              <!--      </a>-->
             </div>
             <div class="p-3 position-relative">
               <div class="list-card-body">
-                <h5 class="mb-1"><a (click)="reloadComponent(video.id)" routerLink="/home/food/{{video.id}}" class="text-black">{{video.name}}</a></h5>
-                <a routerLink="/home/merchant/{{video.user.id}}" class="merchant-name"><h6 class="text-gray mb-3 "><img src="http://localhost:8080/image/{{video.user.avatar}}" style="width: 40px; border-radius: 50%"> {{video.user.studioName}} <i style="font-size: 13px" class="fa-solid fa-circle-check"></i></h6></a>
+                <h5 class="mb-1"><a (click)="reloadComponent(video.id)" routerLink="/home/food/{{video.id}}"
+                                    class="text-black">{{video.name}}</a></h5>
+                <a routerLink="/home/merchant/{{video.user.id}}" class="merchant-name"><h6 class="text-gray mb-3 "><img
+                  src="http://localhost:8080/image/{{video.user.avatar}}"
+                  style="width: 40px; border-radius: 50%"> {{video.user.studioName}} <i style="font-size: 13px"
+                                                                                        class="fa-solid fa-circle-check"></i>
+                </h6></a>
                 <p style="margin-left: 42px; margin-top: -25px" class="text-gray mb-3 time">{{video.dateCreated}}</p>
-                <!--          class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i-->
-                <!--          class="icofont-wall-clock"></i> 20–25 min</span> <span-->
-                <!--          class="float-right text-black price">{{dish.price | number}}đ</span></p>-->
               </div>
             </div>
           </div>

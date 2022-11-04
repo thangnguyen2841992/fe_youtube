@@ -18,4 +18,8 @@ export interface VideoResponse {
   user?: User;
 
   totalSubscriber?: number;
+
+  totalLike?: number;
+
+  totalDisLike?: number;
 }
