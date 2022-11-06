@@ -3,10 +3,14 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {VideoService} from '../../service/video/video.service';
 import {VideoResponse} from '../../model/video-response';
 import {AuthService} from '../../service/auth/auth.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SubscriberService} from '../../service/subscriber/subscriber.service';
 import {LikeService} from '../../service/like/like.service';
 import {DislikeService} from '../../service/dislike/dislike.service';
+import {CommentService} from '../../service/comment/comment.service';
+import {CommentDTO} from '../../model/comment-dto';
+import {LikeCommentService} from '../../service/like-comment/like-comment.service';
+import {DislikeCommentService} from '../../service/dislike-comment/dislike-comment.service';
 
 @Component({
   selector: 'app-video-details',
@@ -23,6 +27,10 @@ export class VideoDetailsComponent implements OnInit {
   isDisLike: boolean;
   videoUrl: string;
   isShowButton = false;
+  commentForm: FormGroup = new FormGroup({
+    content: new FormControl('', [Validators.required]),
+  });
+  comments: CommentDTO[] = [];
 
   constructor(private activatedRoute: ActivatedRoute,
               private videoService: VideoService,
@@ -30,7 +38,10 @@ export class VideoDetailsComponent implements OnInit {
               private router: Router,
               private subscriberService: SubscriberService,
               private likeService: LikeService,
-              private disLikeService: DislikeService) {
+              private disLikeService: DislikeService,
+              private commentService: CommentService,
+              private likeCommentService: LikeCommentService,
+              private dislikeCommentService: DislikeCommentService) {
     this.currentUserId = this.authService.currentUserValue.id;
 
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
@@ -52,6 +63,7 @@ export class VideoDetailsComponent implements OnInit {
   ngOnInit() {
     this.getVideoByVideoId(this.videoId);
     this.getAllVideoOtherUser();
+    this.getCommentOfVideo();
   }
 
 
@@ -104,7 +116,35 @@ export class VideoDetailsComponent implements OnInit {
       this.isDisLike = data.isSubscriber;
     });
   }
+
   showButton() {
     this.isShowButton = true;
+  }
+
+  createNewComment() {
+    const commentForm = {
+      content: this.commentForm.value.content,
+      videoId: this.videoId,
+      userId: this.currentUserId
+    };
+    this.commentService.createNewComment(commentForm).subscribe((data) => {
+      this.commentForm.reset();
+    });
+  }
+
+  getCommentOfVideo() {
+    this.commentService.getCommentOfVideo(this.videoId).subscribe((data) => {
+      this.comments = data;
+    });
+  }
+  addNewLikeComment(commentId: number, userId: number) {
+    this.likeCommentService.addNewLikeComment(commentId, userId).subscribe((data) => {
+          this.getCommentOfVideo();
+    });
+  }
+  addNewDisLikeComment(commentId: number, userId: number) {
+    this.dislikeCommentService.addNewDisLikeComment(commentId, userId).subscribe((data) => {
+      this.getCommentOfVideo();
+    });
   }
 }

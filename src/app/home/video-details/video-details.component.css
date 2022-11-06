@@ -106,12 +106,12 @@
 
 }
 .div_left5{
-  width: 100px;
+  width: 45px;
   text-align: center;
   margin-left: 10px;
 }
 .div_left6{
-  width: 1100px;
+  width: 1140px;
   float: right;
   text-align: center;
   margin-left: 10px;
@@ -120,4 +120,24 @@
 
 #clear button:hover{
   background-color: #6A6A6A;
+}
+.container_swap3 {
+  width: 1200px;
+
+}
+.div_left7{
+  margin-left: -10px;
+  width: 300px;
+
+  float: left;
+
+  text-align: center;
+
+}
+.comment-content {
+  margin-left: -35px;
+}
+.like-dislike {
+  /*margin-left: -50px;*/
+
 }

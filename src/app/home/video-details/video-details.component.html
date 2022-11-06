@@ -85,14 +85,38 @@
                  style="width: 40px; border-radius: 50%">
           </div>
           <div class="div_left6">
-            <textarea (click)="showButton()" class="content-comment" placeholder='Viết bình luận...'></textarea>
-            <button *ngIf="isShowButton" style="background-color: transparent;float: right" id='clear' class="btn btn-default">Huỷ</button>
-            <input *ngIf="isShowButton" style="background-color: transparent; float: right" type="submit" class="btn btn-default" value='Bình luận'>
-          </div>
+            <form [formGroup]="commentForm" >
+            <textarea (click)="showButton()" class="content-comment" placeholder='Viết bình luận...' formControlName="content"></textarea>
+            </form>
 
+            <button *ngIf="isShowButton" style="background-color: transparent;float: right" id='clear' class="btn btn-default">Huỷ</button>
+            <input *ngIf="isShowButton" style="background-color: transparent; float: right" type="button" class="btn btn-default" (click)="createNewComment()" value='Bình luận'>
+          </div>
         </div>
 
-
+        <div class="container_swap3" *ngFor="let comment of comments">
+            <div class="div_left7">
+              <a><h5 class="text-gray mb-3 "><img src="http://localhost:8080/image/{{comment.user.avatar}}"
+                                                  style="width: 40px; border-radius: 50%"> {{comment.user.studioName}}
+                  {{comment.dateCreated}}
+              </h5>
+              </a>
+              <div class="comment-content">
+                <h5>{{comment.content}}</h5>
+              </div>
+              <div class="like-dislike">
+                <button (click)="addNewLikeComment(comment.id, currentUserId)" class="btn btn-default"><i *ngIf="!isLikeVideo"
+                                                                                                class="fa-regular fa-thumbs-up"></i><i
+                  *ngIf="isLikeVideo" class="fa-solid fa-thumbs-up"></i> {{comment.totalLike}}</button>
+                <button (click)="addNewDisLikeComment(comment.id, currentUserId)" class="btn btn-default"><i *ngIf="!isDisLike"
+                                                                                                   class="fa-regular fa-thumbs-down"></i><i
+                  *ngIf="isDisLike" class="fa-solid fa-thumbs-down"></i> {{comment.totalDislike}}</button>
+                <button class="btn btn-default">
+                  Phản hồi
+                </button>
+              </div>
+            </div>
+        </div>
       </div>
     </div>
     <!-- First Photo Grid-->
