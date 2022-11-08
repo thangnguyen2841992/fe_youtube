@@ -106,12 +106,12 @@
 
 }
 .div_left5{
-  width: 40px;
+  width: 45px;
   text-align: center;
   margin-left: 10px;
 }
 .div_left6{
-  width: 1150px;
+  width: 1140px;
   float: right;
   text-align: center;
   margin-left: 10px;
@@ -120,4 +120,54 @@
 
 #clear button:hover{
   background-color: #6A6A6A;
+}
+.container_swap3 {
+  width: 1200px;
+
+}
+.div_left7{
+  margin-left: -10px;
+  width: 300px;
+
+  float: left;
+
+  text-align: center;
+
+}
+.comment-content {
+  margin-left: 45px;
+}
+.like-dislike {
+  /*margin-left: -50px;*/
+
+}
+.comment-video {
+  margin-left: 60px;
+}
+.like-dislike{
+  margin-left: 45px;
+}
+.content {
+  position: absolute;
+  display: inline-block;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  color: #FFF;
+  width: 100%;
+  text-align: center;
+  z-index: 999;
+}
+
+.play {
+  font-size: 70px;
+  cursor: pointer;
+  /*border: 1px solid #FFF;*/
+  display: inline-block;
+  text-align: center;
+  padding: 5px 25px;
+}
+
+.play:hover {
+  color: red;
 }

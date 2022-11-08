@@ -38,5 +38,7 @@ export class VideoService {
   createNewVideo(videoForm): Observable<Video> {
     return this.http.post<Video>(`${API_URL}`, videoForm);
   }
-
+getVideoByVideoID1(videoId: number): Observable<VideoResponse[]> {
+    return this.http.get<VideoResponse[]>(`${API_URL}/test/video/${videoId}`);
+}
 }

@@ -3,7 +3,7 @@ import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Subscriber} from '../../model/subscriber';
-import {CheckSubscriber} from '../../model/check-subscriber';
+import {Check} from '../../model/check';
 
 const API_URL = `${environment.apiUrl}/subscribers`;
 
@@ -18,7 +18,7 @@ export class SubscriberService {
   addNewMember(userId: number, memberId: number): Observable<Subscriber> {
     return this.http.post<Subscriber>(`${API_URL}/addMember/user/${userId}/member/${memberId}`, memberId);
   }
-  checkMember(userId: number, memberId: number): Observable<CheckSubscriber> {
-    return this.http.post<CheckSubscriber>(`${API_URL}/checkMember/user/${userId}/member/${memberId}`, memberId);
+  checkMember(userId: number, memberId: number): Observable<Check> {
+    return this.http.post<Check>(`${API_URL}/checkMember/user/${userId}/member/${memberId}`, memberId);
   }
 }

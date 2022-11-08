@@ -3,7 +3,7 @@ import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Dislike} from '../../model/dislike';
-import {CheckSubscriber} from '../../model/check-subscriber';
+import {Check} from '../../model/check';
 
 const API_URL = `${environment.apiUrl}/dislikes`;
 
@@ -19,7 +19,7 @@ export class DislikeService {
     return this.http.post<Dislike>(`${API_URL}/video/${videoId}/user/${userId}`, videoId);
   }
 
-  checkDisLike(videoId: number, userId: number): Observable<CheckSubscriber> {
-    return this.http.post<CheckSubscriber>(`${API_URL}/checkDisLike/video/${videoId}/user/${userId}`, videoId);
+  checkDisLike(videoId: number, userId: number): Observable<Check> {
+    return this.http.post<Check>(`${API_URL}/checkDisLike/video/${videoId}/user/${userId}`, videoId);
   }
 }

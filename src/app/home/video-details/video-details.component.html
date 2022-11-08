@@ -13,13 +13,16 @@
   <div class="row">
     <div class="col-md-9 col-sm-6 mb-4 pb-2">
       <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-        <div class="list-card-image">
-          <video width="1200" height="700" controls>
-            <source src="{{videoUrl}}" type="video/mp4">
+        <div class="list-card-image" *ngFor="let video1 of videos1">
+          <video (ended)="checkVideoEnd()" (click)="checkIsPlayVideo()" width="1200" height="700" controls
+                 id="videoPlayer">
+            <!--                      <button><i class="fa-solid fa-play"></i></button>-->
+
+            <source src="{{video1.url}}" type="video/mp4">
           </video>
-          <!--      <a routerLink="/home/food/{{dish.id}}" routerLinkActive="active">-->
-          <!--        <img src="http://localhost:8080/image/{{dish.image}}" alt="" class="img-fluid item-img food-img">-->
-          <!--      </a>-->
+          <div class="content">
+            <div class="play" *ngIf="!isPlayVideo"><i (click)="playPause()" class="fa-solid fa-play"></i></div>
+          </div>
         </div>
 
         <div class="p-3 position-relative">
@@ -60,42 +63,8 @@
           </div>
         </div>
       </div>
-      <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-        <div class="container_swap1">
-          <div class="div_left3">
-            <h6>52 bình luận</h6>
-          </div>
-          <div class="div_left4">
-            <div class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">
-                <i class="fa-solid fa-arrow-up-wide-short"></i> Sắp xếp theo
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" type="button">Bình luận hàng đầu</button>
-                <button class="dropdown-item" type="button">Mới nhất xếp trước</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="container_swap2">
-          <div class="div_left5">
-            <img src="http://localhost:8080/image/{{video.user.avatar}}"
-                 style="width: 40px; border-radius: 50%">
-          </div>
-          <div class="div_left6">
-            <textarea (click)="showButton()" class="content-comment" placeholder='Viết bình luận...'></textarea>
-            <button *ngIf="isShowButton" style="background-color: transparent;float: right" id='clear' class="btn btn-default">Huỷ</button>
-            <input *ngIf="isShowButton" style="background-color: transparent; float: right" type="submit" class="btn btn-default" value='Bình luận'>
-          </div>
-
-        </div>
-
-
-      </div>
+      <!--      <app-card-video-details videoId="{{videoId}}"></app-card-video-details>-->
     </div>
-    <!-- First Photo Grid-->
     <div class="col-md-3">
       <cdk-virtual-scroll-viewport itemSize="10" class="container-scroll-reply">
         <div *ngFor="let video of videos">
@@ -126,6 +95,75 @@
       </cdk-virtual-scroll-viewport>
     </div>
 
+    <div class="col-md-9 col-sm-6 mb-4 pb-2">
+      <div class=" bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+        <div class="container_swap1">
+          <div class="div_left3">
+            <h6>52 bình luận</h6>
+          </div>
+          <div class="div_left4">
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                <i class="fa-solid fa-arrow-up-wide-short"></i> Sắp xếp theo
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" type="button">Bình luận hàng đầu</button>
+                <button class="dropdown-item" type="button">Mới nhất xếp trước</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container_swap2">
+          <div class="div_left5">
+            <img src="http://localhost:8080/image/{{user.avatar}}"
+                 style="width: 40px; border-radius: 50%">
+          </div>
+          <div class="div_left6">
+            <form [formGroup]="commentForm">
+              <textarea (click)="showButton()" class="content-comment" placeholder='Viết bình luận...'
+                        formControlName="content"></textarea>
+            </form>
+
+            <button *ngIf="isShowButton" style="background-color: transparent;float: right;margin-right: 20px; margin-bottom: 10px"
+                    id='clear' class="btn btn-default" (click)="hiddenFormComment()">Huỷ
+            </button>
+            <input *ngIf="isShowButton" style="background-color: transparent; float: right;margin-right: 20px; margin-bottom: 10px"
+                   type="button" class="btn btn-primary" (click)="createNewComment()" value='Bình luận'>
+          </div>
+        </div>
+
+        <div class="comment-video" *ngFor="let comment of comments">
+          <a><h5 class="text-gray mb-3 "><img src="http://localhost:8080/image/{{comment.user.avatar}}"
+                                              style="width: 40px; border-radius: 50%"> {{comment.user.studioName}} -
+            {{comment.dateCreated}}
+          </h5>
+          </a>
+
+          <div class="comment-content">
+            <h5>{{comment.content}}</h5>
+          </div>
+          <div class="like-dislike">
+            <button (click)="addNewLikeComment(comment.id, currentUserId); checkLikeComment(comment.id, currentUserId)"
+                    class="btn btn-default"><i *ngIf="!isLikeComment"
+                                               class="fa-regular fa-thumbs-up"></i><i
+              *ngIf="isLikeComment" class="fa-solid fa-thumbs-up"></i> {{comment.totalLike}}</button>
+            <button (click)="addNewDisLikeComment(comment.id, currentUserId)" class="btn btn-default"><i
+              *ngIf="!isDisLike"
+              class="fa-regular fa-thumbs-down"></i><i
+              *ngIf="isDisLike" class="fa-solid fa-thumbs-down"></i> {{comment.totalDislike}}</button>
+            <button class="btn btn-default">
+              Phản hồi
+            </button>
+          </div>
+        </div>
+        <br>
+
+      </div>
+    </div>
+    <!-- First Photo Grid-->
+
   </div>
 
 </div>
@@ -140,6 +178,7 @@
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
   }
+
 </script>
 
 </body>

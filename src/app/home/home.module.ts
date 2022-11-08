@@ -14,10 +14,11 @@ import { TestComponent } from './test/test.component';
 import { VideoDetailsComponent } from './video-details/video-details.component';
 import { FindVideoByHastagComponent } from './find-video-by-hastag/find-video-by-hastag.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import { CardVideoDetailsComponent } from './card-video-details/card-video-details.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, VideoCreateComponent, TestComponent, VideoDetailsComponent, FindVideoByHastagComponent],
+  declarations: [HomeComponent, VideoCreateComponent, TestComponent, VideoDetailsComponent, FindVideoByHastagComponent, CardVideoDetailsComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

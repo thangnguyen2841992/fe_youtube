@@ -1,12 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {VideoService} from '../../service/video/video.service';
 import {VideoResponse} from '../../model/video-response';
 import {AuthService} from '../../service/auth/auth.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SubscriberService} from '../../service/subscriber/subscriber.service';
 import {LikeService} from '../../service/like/like.service';
 import {DislikeService} from '../../service/dislike/dislike.service';
+import {CommentService} from '../../service/comment/comment.service';
+import {CommentDTO} from '../../model/comment-dto';
+import {LikeCommentService} from '../../service/like-comment/like-comment.service';
+import {DislikeCommentService} from '../../service/dislike-comment/dislike-comment.service';
+import {UserService} from '../../service/user/user.service';
+import {User} from '../../model/user';
 
 @Component({
   selector: 'app-video-details',
@@ -21,8 +27,17 @@ export class VideoDetailsComponent implements OnInit {
   checkSubscriber: boolean;
   isLikeVideo: boolean;
   isDisLike: boolean;
+  isLikeComment = false;
+  isDisLikeComment = false;
   videoUrl: string;
   isShowButton = false;
+  commentForm: FormGroup = new FormGroup({
+    content: new FormControl('', [Validators.required]),
+  });
+  comments: CommentDTO[] = [];
+  user: User = {};
+  videos1: VideoResponse[] = [];
+  isPlayVideo = false;
 
   constructor(private activatedRoute: ActivatedRoute,
               private videoService: VideoService,
@@ -30,12 +45,17 @@ export class VideoDetailsComponent implements OnInit {
               private router: Router,
               private subscriberService: SubscriberService,
               private likeService: LikeService,
-              private disLikeService: DislikeService) {
+              private disLikeService: DislikeService,
+              private commentService: CommentService,
+              private likeCommentService: LikeCommentService,
+              private dislikeCommentService: DislikeCommentService,
+              private userService: UserService) {
     this.currentUserId = this.authService.currentUserValue.id;
 
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.videoId = +paramMap.get('videoId');
     });
+
   }
 
   getVideoByVideoId(videoId: number) {
@@ -50,10 +70,24 @@ export class VideoDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getVideoByVideoId(this.videoId);
+    this.getVideoByVIdeoId();
     this.getAllVideoOtherUser();
+    this.getCommentOfVideo();
+    this.getUserByUserId();
+    this.getVideoByVideoId(this.videoId);
+
   }
 
+  playPause() {
+    const myVideo: any = document.getElementById('videoPlayer');
+    if (myVideo.paused) {
+      myVideo.play();
+      this.isPlayVideo = true;
+    } else {
+      myVideo.pause();
+      this.isPlayVideo = false;
+    }
+  }
 
   getAllVideoOtherUser() {
     this.videoService.getAllVideoOtherUserOtherVideo(this.currentUserId, this.videoId).subscribe((data) => {
@@ -104,7 +138,69 @@ export class VideoDetailsComponent implements OnInit {
       this.isDisLike = data.isSubscriber;
     });
   }
+
   showButton() {
     this.isShowButton = true;
+  }
+
+  createNewComment() {
+    const commentForm = {
+      content: this.commentForm.value.content,
+      videoId: this.videoId,
+      userId: this.currentUserId
+    };
+    this.commentService.createNewComment(commentForm).subscribe((data) => {
+      this.commentForm.reset();
+      this.getCommentOfVideo();
+    });
+  }
+
+  getCommentOfVideo() {
+    this.commentService.getCommentOfVideo(this.videoId).subscribe((data) => {
+      this.comments = data;
+    });
+  }
+
+  addNewLikeComment(commentId: number, userId: number) {
+    this.likeCommentService.addNewLikeComment(commentId, userId).subscribe((data) => {
+      this.getCommentOfVideo();
+    });
+  }
+
+  addNewDisLikeComment(commentId: number, userId: number) {
+    this.dislikeCommentService.addNewDisLikeComment(commentId, userId).subscribe((data) => {
+      this.getCommentOfVideo();
+    });
+  }
+
+  getUserByUserId() {
+    this.userService.getUserById(this.currentUserId).subscribe((data) => {
+      this.user = data;
+    });
+  }
+
+  hiddenFormComment() {
+    this.isShowButton = false;
+  }
+
+  checkLikeComment(commentId: number, userId: number) {
+    this.likeCommentService.checkLikeComment(commentId, userId).subscribe((data) => {
+      this.isLikeComment = data.isSubscriber;
+    });
+  }
+
+  getVideoByVIdeoId() {
+    this.videoService.getVideoByVideoID1(this.videoId).subscribe((data) => {
+      this.videos1 = data;
+    });
+  }
+
+
+  checkIsPlayVideo() {
+    this.isPlayVideo = false;
+  }
+
+  checkVideoEnd() {
+    this.isPlayVideo = false;
   }
 }

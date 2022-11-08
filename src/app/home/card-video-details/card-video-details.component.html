@@ -1,0 +1,48 @@
+<div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+  <div class="list-card-image">
+    <video width="1200" height="700" controls>
+      <source src="{{video.url}}" type="video/mp4">
+    </video>
+    <!--      <a routerLink="/home/food/{{dish.id}}" routerLinkActive="active">-->
+    <!--        <img src="http://localhost:8080/image/{{dish.image}}" alt="" class="img-fluid item-img food-img">-->
+    <!--      </a>-->
+  </div>
+
+  <div class="p-3 position-relative">
+    <div class="list-card-body">
+      <h4 class="mb-1"><a class="text-black">{{video.name}}</a></h4>
+      <div class="container_swap">
+        <div class="div_left">
+          <a><h5 class="text-gray mb-3 "><img src="http://localhost:8080/image/{{video.user.avatar}}"
+                                              style="width: 40px; border-radius: 50%"> {{video.user.studioName}}
+            <i style="font-size: 13px" class="fa-solid fa-circle-check"></i></h5></a>
+          <p id="date-created" class="text-gray mb-3 time">{{video.totalSubscriber}} người đăng ký</p>
+          <p style="margin-left: -155px" id="date-created1" class="text-gray mb-3 time">{{video.dateCreated}}</p>
+
+        </div>
+        <div class="div_left1">
+          <button style="margin-right: 40px" *ngIf="!checkSubscriber"
+                  (click)="addNewMember(video.user.id, currentUserId)" class="btn btn-dark" id="subcrise">Đăng ký
+          </button>
+          <div>
+            <button *ngIf="checkSubscriber" class="btn btn-default" disabled id="subcrise1">Đã đăng ký</button>
+            <span> </span>
+          </div>
+        </div>
+        <div class="div_left2">
+          <i style=" margin-left: 10px;margin-top: 20px; margin-left: -60px" class="fa-solid fa-bell"></i>
+        </div>
+        <div class="div_right1">
+          <button (click)="addNewLike(videoId, currentUserId)" class="btn btn-default"><i *ngIf="!isLikeVideo"
+                                                                                          class="fa-regular fa-thumbs-up"></i><i
+            *ngIf="isLikeVideo" class="fa-solid fa-thumbs-up"></i> {{video.totalLike}}</button>
+          <button (click)="addNewDisLike(videoId, currentUserId)" class="btn btn-default"><i *ngIf="!isDisLike"
+                                                                                             class="fa-regular fa-thumbs-down"></i><i
+            *ngIf="isDisLike" class="fa-solid fa-thumbs-down"></i> {{video.totalDisLike}}</button>
+        </div>
+      </div>
+      <div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,7 @@ import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Like} from '../../model/like';
-import {CheckSubscriber} from '../../model/check-subscriber';
+import {Check} from '../../model/check';
 
 const API_URL = `${environment.apiUrl}/likes`;
 
@@ -18,7 +18,7 @@ export class LikeService {
   addNewLike(videoId: number, userId: number): Observable<Like> {
     return this.http.post<Like>(`${API_URL}/video/${videoId}/user/${userId}`, videoId);
   }
-  checkLikeVideo(videoId: number, userId: number): Observable<CheckSubscriber> {
-    return this.http.post<CheckSubscriber>(`${API_URL}/checkLike/video/${videoId}/user/${userId}`, videoId);
+  checkLikeVideo(videoId: number, userId: number): Observable<Check> {
+    return this.http.post<Check>(`${API_URL}/checkLike/video/${videoId}/user/${userId}`, videoId);
   }
 }
