@@ -117,7 +117,15 @@
   margin-left: 10px;
   margin-top: -40px;
 }
+.div_left8{
+  width: 1050px;
+  float: right;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
 
+  /*margin-top: -45px;*/
+}
 #clear button:hover{
   background-color: #6A6A6A;
 }
@@ -135,6 +143,7 @@
 
 }
 .comment-content {
+  margin-top: -20px;
   margin-left: 45px;
 }
 .like-dislike {

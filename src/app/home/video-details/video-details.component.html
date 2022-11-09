@@ -14,7 +14,7 @@
     <div class="col-md-9 col-sm-6 mb-4 pb-2">
       <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
         <div class="list-card-image" *ngFor="let video1 of videos1">
-          <video (ended)="checkVideoEnd()" (click)="checkIsPlayVideo()" width="1200" height="700" controls
+          <video (ended)="checkVideoEnd()" (click)="checkIsPlayVideo()" width="1200" height="675" controls
                  id="videoPlayer">
             <!--                      <button><i class="fa-solid fa-play"></i></button>-->
 
@@ -46,7 +46,7 @@
                   <span> </span>
                 </div>
               </div>
-              <div class="div_left2">
+              <div *ngIf="checkSubscriber" class="div_left2">
                 <i style=" margin-left: 10px;margin-top: 20px; margin-left: -60px" class="fa-solid fa-bell"></i>
               </div>
               <div class="div_right1">
@@ -70,7 +70,7 @@
         <div *ngFor="let video of videos">
           <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
             <div class="list-card-image">
-              <a routerLink="/video/{{video.id}}" style="cursor: pointer">
+              <a (click)="reloadComponent(video.id)" routerLink="/video/{{video.id}}" style="cursor: pointer">
                 <video width="365" height="200">
                   <source src="{{video.url}}" type="video/mp4">
                 </video>
@@ -78,7 +78,7 @@
             </div>
             <div class="p-3 position-relative">
               <div class="list-card-body">
-                <h5 class="mb-1"><a (click)="reloadComponent(video.id)" routerLink="/home/food/{{video.id}}"
+                <h5 class="mb-1"><a (click)="reloadComponent(video.id)" routerLink="/video/{{video.id}}"
                                     class="text-black">{{video.name}}</a></h5>
                 <a routerLink="/home/merchant/{{video.user.id}}" class="merchant-name"><h6 class="text-gray mb-3 "><img
                   src="http://localhost:8080/image/{{video.user.avatar}}"
@@ -99,7 +99,7 @@
       <div class=" bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
         <div class="container_swap1">
           <div class="div_left3">
-            <h6>52 bình luận</h6>
+            <h6>{{video.totalComment}} bình luận</h6>
           </div>
           <div class="div_left4">
             <div class="dropdown">
@@ -135,6 +135,7 @@
         </div>
 
         <div class="comment-video" *ngFor="let comment of comments">
+          <br>
           <a><h5 class="text-gray mb-3 "><img src="http://localhost:8080/image/{{comment.user.avatar}}"
                                               style="width: 40px; border-radius: 50%"> {{comment.user.studioName}} -
             {{comment.dateCreated}}
@@ -153,12 +154,25 @@
               *ngIf="!isDisLike"
               class="fa-regular fa-thumbs-down"></i><i
               *ngIf="isDisLike" class="fa-solid fa-thumbs-down"></i> {{comment.totalDislike}}</button>
-            <button class="btn btn-default">
+            <button class="btn btn-default" (click)="displayFormReply(comment.id)">
               Phản hồi
             </button>
           </div>
+          <img  src="http://localhost:8080/image/{{user.avatar}}"
+               style="width: 30px; border-radius: 50%; margin-left: 45px;margin-top: 10px">
+          <div class="div_left8" *ngIf="isShowReply.commentId === comment.id && isShowReply.isShowReply">
+            <form [formGroup]="commentForm">
+              <textarea (click)="showButton()" class="content-comment" placeholder='Phản hồi...'
+                        formControlName="content"></textarea>
+            </form>
+
+            <button *ngIf="isShowButton" style="background-color: transparent;float: right;margin-right: 20px; margin-bottom: 10px"
+                    id='clear1' class="btn btn-default" (click)="hiddenFormComment()">Huỷ
+            </button>
+            <input *ngIf="isShowButton" style="background-color: transparent; float: right;margin-right: 20px; margin-bottom: 10px"
+                   type="button" class="btn btn-primary" (click)="createNewComment()" value='Bình luận'>
+          </div>
         </div>
-        <br>
 
       </div>
     </div>

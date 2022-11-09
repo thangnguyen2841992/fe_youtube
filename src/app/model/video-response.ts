@@ -22,4 +22,6 @@ export interface VideoResponse {
   totalLike?: number;
 
   totalDisLike?: number;
+
+  totalComment?: number;
 }

@@ -13,6 +13,7 @@ import {LikeCommentService} from '../../service/like-comment/like-comment.servic
 import {DislikeCommentService} from '../../service/dislike-comment/dislike-comment.service';
 import {UserService} from '../../service/user/user.service';
 import {User} from '../../model/user';
+import {ShowReplyComment} from '../../model/show-reply-comment';
 
 @Component({
   selector: 'app-video-details',
@@ -27,7 +28,7 @@ export class VideoDetailsComponent implements OnInit {
   checkSubscriber: boolean;
   isLikeVideo: boolean;
   isDisLike: boolean;
-  isLikeComment = false;
+  isLikeComment = true;
   isDisLikeComment = false;
   videoUrl: string;
   isShowButton = false;
@@ -38,6 +39,7 @@ export class VideoDetailsComponent implements OnInit {
   user: User = {};
   videos1: VideoResponse[] = [];
   isPlayVideo = false;
+  isShowReply: ShowReplyComment = {};
 
   constructor(private activatedRoute: ActivatedRoute,
               private videoService: VideoService,
@@ -202,5 +204,13 @@ export class VideoDetailsComponent implements OnInit {
 
   checkVideoEnd() {
     this.isPlayVideo = false;
+  }
+
+  displayFormReply(commentId: number) {
+    this.isShowReply = {
+      commentId,
+      isShowReply: true
+    };
+    console.log(this.isShowReply);
   }
 }
