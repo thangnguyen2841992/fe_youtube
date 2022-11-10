@@ -170,7 +170,7 @@
                           </div>
                           <div *ngIf="isShowReply.commentId === comment.id && isShowReply.isShowReply"
                                class="div_left11">
-                            <form [formGroup]="commentForm">
+                            <form [formGroup]="replyForm">
               <textarea style="margin-top: 5px" class="content-comment" placeholder='Phản hồi...'
                         formControlName="content"></textarea>
                             </form>

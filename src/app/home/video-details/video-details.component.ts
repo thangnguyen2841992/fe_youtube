@@ -250,6 +250,7 @@ export class VideoDetailsComponent implements OnInit {
     };
     this.replyService.addNewReply(replyForm).subscribe((data) => {
       this.replyForm.reset();
+      this.getCommentOfVideo();
     });
   }
 
