@@ -6,7 +6,6 @@
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
      title="close side menu" id="myOverlay"></div>
-
 <!-- !PAGE CONTENT! -->
 <div class="w3-main">
   <br>
@@ -24,7 +23,6 @@
             <div class="play" *ngIf="!isPlayVideo"><i (click)="playPause()" class="fa-solid fa-play"></i></div>
           </div>
         </div>
-
         <div class="p-3 position-relative">
           <div class="list-card-body">
             <h4 class="mb-1"><a class="text-black">{{video.name}}</a></h4>
@@ -89,12 +87,9 @@
               </div>
             </div>
           </div>
-
         </div>
-
       </cdk-virtual-scroll-viewport>
     </div>
-
     <div class="col-md-9 col-sm-6 mb-4 pb-2">
       <div class=" bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
         <div class="container_swap1">
@@ -126,84 +121,104 @@
                         formControlName="content"></textarea>
             </form>
 
-            <button *ngIf="isShowButton" style="background-color: transparent;float: right;margin-right: 20px; margin-bottom: 10px"
+            <button *ngIf="isShowButton"
+                    style="background-color: transparent;float: right;margin-right: 20px; margin-bottom: 10px"
                     id='clear1' class="btn btn-default" (click)="hiddenFormComment()">Huỷ
             </button>
-            <input *ngIf="isShowButton" style="background-color: transparent; float: right;margin-right: 20px; margin-bottom: 10px"
+            <input *ngIf="isShowButton"
+                   style="background-color: transparent; float: right;margin-right: 20px; margin-bottom: 10px"
                    type="button" class="btn btn-primary" (click)="createNewComment()" value='Bình luận'>
           </div>
         </div>
-        <div class="container mb-5 mt-5">
-          <div class="card">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="media"  *ngFor="let comment of comments">
-                      <img  class="mr-3 rounded-circle" alt="Bootstrap Media Preview" src="http://localhost:8080/image/{{comment.user.avatar}}" width="30px" />
-                      <div class="media-body">
-                        <div class="row">
-                          <div class="col-8 d-flex">
-                            <h5>{{comment.user.studioName}}</h5>
-                            <span style="margin-top: 10px">- {{comment.dateCreated}}</span>
+        <div *ngIf="comments.length > 0" class="container mb-5 mt-5">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="media" *ngFor="let comment of comments">
+                    <img class="mr-3 rounded-circle" alt="Bootstrap Media Preview"
+                         src="http://localhost:8080/image/{{comment.user.avatar}}" style="width: 40px; height: 40px"/>
+                    <div class="media-body">
+                      <div class="row">
+                        <div class="col-8 d-flex">
+                          <h5>{{comment.user.studioName}}</h5>
+                          <span style="margin-top: 10px">- {{comment.dateCreated}}</span>
+                        </div>
+                      </div>
+                      {{comment.content}}
+                      <div>
+                        <button
+                          (click)="addNewLikeComment(comment.id, currentUserId); checkLikeComment(comment.id, currentUserId)"
+                          class="btn btn-default"><i class="fa-regular fa-thumbs-up"></i>
+                          <!--                          <i *ngIf="isLikeComment" class="fa-solid fa-thumbs-up"></i> -->
+                          {{comment.totalLike}}</button>
+                        <button (click)="addNewDisLikeComment(comment.id, currentUserId)" class="btn btn-default">
+                          <i class="fa-regular fa-thumbs-down"></i>
+                          <!--                                        <i *ngIf="isDisLike" class="fa-solid fa-thumbs-down"></i> -->
+                          {{comment.totalDislike}}</button>
+                        <button class="btn btn-default" (click)="displayFormReply(comment.id)">
+                          Phản hồi
+                        </button>
+                      </div>
+                      <div>
+                        <div class="container_swap4">
+                          <div style="margin-left: -2px"
+                               *ngIf="isShowReply.commentId === comment.id && isShowReply.isShowReply"
+                               class="div_left10">
+                            <img src="http://localhost:8080/image/{{user.avatar}}"
+                                 style=" border-radius: 50%; width: 30px; height: 30px; margin-top: 10px">
                           </div>
-                        </div>
-                        {{comment.content}}
-                        <div>
-                        <button (click)="addNewLikeComment(comment.id, currentUserId); checkLikeComment(comment.id, currentUserId)"
-                                              class="btn btn-default"><i *ngIf="!isLikeComment"
-                                                                         class="fa-regular fa-thumbs-up"></i><i
-                                        *ngIf="isLikeComment" class="fa-solid fa-thumbs-up"></i> {{comment.totalLike}}</button>
-                                      <button (click)="addNewDisLikeComment(comment.id, currentUserId)" class="btn btn-default"><i
-                                        *ngIf="!isDisLike"
-                                        class="fa-regular fa-thumbs-down"></i><i
-                                        *ngIf="isDisLike" class="fa-solid fa-thumbs-down"></i> {{comment.totalDislike}}</button>
-                                      <button class="btn btn-default" (click)="displayFormReply(comment.id)">
-                                        Phản hồi
-                                      </button>
-                        </div>
-                        <div>
-                          <div class="container_swap4">
-                            <div style="margin-left: -2px" *ngIf="isShowReply.commentId === comment.id && isShowReply.isShowReply" class="div_left10">
-                              <img src="http://localhost:8080/image/{{user.avatar}}"
-                                   style=" border-radius: 50%">
-                            </div>
-                            <div *ngIf="isShowReply.commentId === comment.id && isShowReply.isShowReply" class="div_left11">
-                              <form [formGroup]="commentForm">
-              <textarea  (click)="showButton()" class="content-comment" placeholder='Phản hồi...'
+                          <div *ngIf="isShowReply.commentId === comment.id && isShowReply.isShowReply"
+                               class="div_left11">
+                            <form [formGroup]="commentForm">
+              <textarea style="margin-top: 5px" class="content-comment" placeholder='Phản hồi...'
                         formControlName="content"></textarea>
-                              </form>
-
-                              <button *ngIf="isShowReply.commentId === comment.id && isShowReply.isShowReply" style="background-color: transparent;float: right;margin-right: 20px; margin-bottom: 10px"
-                                      (click)="hiddenButtonReply(comment.id)"   id='clear' class="btn btn-default" (click)="hiddenFormComment()">Huỷ
-                              </button>
-                              <input *ngIf="isShowReply.commentId === comment.id && isShowReply.isShowReply" style="background-color: transparent; float: right;margin-right: 20px; margin-bottom: 10px"
-                                     type="button" class="btn btn-primary" (click)="createNewComment()" value='Phản hồi'>
-                            </div>
-
+                            </form>
+                            <button *ngIf="isShowReply.commentId === comment.id && isShowReply.isShowReply"
+                                    style="background-color: transparent;float: right;margin-right: 20px; margin-bottom: 10px"
+                                    (click)="hiddenButtonReply(comment.id)" id='clear' class="btn btn-default"
+                                    (click)="hiddenFormComment()">Huỷ
+                            </button>
+                            <input *ngIf="isShowReply.commentId === comment.id && isShowReply.isShowReply"
+                                   style="background-color: transparent; float: right;margin-right: 20px; margin-bottom: 10px"
+                                   type="button" class="btn btn-primary" (click)="addNewReply(comment.id)" value='Phản hồi'>
                           </div>
-
                         </div>
-                        <div>
-                          <br *ngIf="isShowReply.commentId === comment.id && isShowReply.isShowReply">
-                          <br *ngIf="isShowReply.commentId === comment.id && isShowReply.isShowReply">
-
-                          <button (click)="showAllReply(comment.id)" class="show-reply" *ngIf="comment.replyDTOList.length > 0">{{comment.replyDTOList.length}} phản hồi</button>
-
-                        </div>
-
-                        <div class="media mt-4" *ngFor="let reply of comment.replyDTOList">
-                          <br>
-                          <a class="pr-3" href="#"><img  class="rounded-circle" alt="Bootstrap Media Another Preview" src="http://localhost:8080/image/{{reply.user.avatar}}" /></a>
-                          <div class="media-body">
-
-                            <div class="row">
-                              <div class="col-12 d-flex">
-                                <h5>{{reply.user.studioName}}</h5>
-                                <span style="margin-top: 10px">- {{reply.dateCreated}}</span>
-                              </div>
+                      </div>
+                      <div>
+                        <br *ngIf="isShowReply.commentId === comment.id && isShowReply.isShowReply">
+                        <br *ngIf="isShowReply.commentId === comment.id && isShowReply.isShowReply">
+                        <button (click)="showAllReply(comment.id)" class="show-reply"
+                                *ngIf="comment.replyDTOList.length > 0">{{comment.replyDTOList.length}} phản hồi
+                        </button>
+                      </div>
+                      <div class="media mt-4" *ngFor="let reply of comment.replyDTOList">
+                        <a *ngIf="isShowAllReply.commentId == comment.id && isShowAllReply.isShowAllReply" class="pr-3"
+                           href="#"><img style="width: 30px; height: 30px" class="rounded-circle"
+                                         alt="Bootstrap Media Another Preview"
+                                         src="http://localhost:8080/image/{{reply.user.avatar}}"/></a>
+                        <div class="media-body">
+                          <div style="margin-top: -5px"
+                               *ngIf="isShowAllReply.commentId == comment.id && isShowAllReply.isShowAllReply"
+                               class="row">
+                            <div class="col-12 d-flex">
+                              <h5>{{reply.user.studioName}}</h5>
+                              <span style="margin-top: 10px">- {{reply.dateCreated}}</span>
                             </div>
-                            {{reply.content}}
+                          </div>
+                          <p
+                            *ngIf="isShowAllReply.commentId == comment.id && isShowAllReply.isShowAllReply">{{reply.content}}</p>
+                          <div style="margin-top: -5px">
+                            <button *ngIf="isShowAllReply.commentId == comment.id && isShowAllReply.isShowAllReply"
+                                    (click)="addNewLikeComment(comment.id, currentUserId)" class="btn btn-default"><i
+                              class="fa-regular fa-thumbs-up"></i>
+                              <!--                                <i *ngIf="isLikeComment" class="fa-solid fa-thumbs-up"></i> -->
+                              {{comment.totalLike}}</button>
+                            <button *ngIf="isShowAllReply.commentId == comment.id && isShowAllReply.isShowAllReply"
+                                    (click)="addNewDisLikeComment(comment.id, currentUserId)" class="btn btn-default"><i
+                              class="fa-regular fa-thumbs-down"></i>
+                              <!--                                <i *ngIf="isDisLike" class="fa-solid fa-thumbs-down"></i> -->
+                              {{comment.totalDislike}}</button>
                           </div>
                         </div>
                       </div>
@@ -214,12 +229,17 @@
             </div>
           </div>
         </div>
+        <div *ngIf="comments.length === 0" class="container mb-5 mt-5">
+          <div class="row">
+            <div class="col-md-12">
+              <h4 style="margin-left: 270px">Hiện tại chưa có bình luận nào. Bạn hãy là người đầu tiên.</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- First Photo Grid-->
     </div>
-    <!-- First Photo Grid-->
-
   </div>
-
-</div>
 </div>
 <script>
   // Script to open and close sidebar
@@ -232,9 +252,7 @@
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
   }
-
 </script>
-
 </body>
 </html>
 

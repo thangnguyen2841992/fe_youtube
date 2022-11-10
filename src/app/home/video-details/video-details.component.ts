@@ -15,6 +15,8 @@ import {UserService} from '../../service/user/user.service';
 import {User} from '../../model/user';
 import {ShowReplyComment} from '../../model/show-reply-comment';
 import {ReplyService} from '../../service/reply/reply.service';
+import {ShowAllReplyComment} from '../../model/show-all-reply-comment';
+import {CheckLikeComment} from '../../model/check-like-comment';
 
 @Component({
   selector: 'app-video-details',
@@ -29,8 +31,10 @@ export class VideoDetailsComponent implements OnInit {
   checkSubscriber: boolean;
   isLikeVideo: boolean;
   isDisLike: boolean;
-  isLikeComment = true;
-  isDisLikeComment = false;
+  // isLikeComment: CheckLikeComment = {
+  //
+  // }
+  // isDisLikeComment = false;
   videoUrl: string;
   isShowButton = false;
   commentForm: FormGroup = new FormGroup({
@@ -45,6 +49,10 @@ export class VideoDetailsComponent implements OnInit {
   isPlayVideo = false;
   isShowReply: ShowReplyComment = {};
   isShowButtonReply = false;
+  isShowAllReply: ShowAllReplyComment = {
+    commentId: 0,
+    isShowAllReply: false
+  };
 
   constructor(private activatedRoute: ActivatedRoute,
               private videoService: VideoService,
@@ -194,7 +202,6 @@ export class VideoDetailsComponent implements OnInit {
 
   checkLikeComment(commentId: number, userId: number) {
     this.likeCommentService.checkLikeComment(commentId, userId).subscribe((data) => {
-      this.isLikeComment = data.isSubscriber;
     });
   }
 
@@ -244,5 +251,18 @@ export class VideoDetailsComponent implements OnInit {
     this.replyService.addNewReply(replyForm).subscribe((data) => {
       this.replyForm.reset();
     });
+  }
+
+  showAllReply(commentId: number) {
+    if (commentId !== this.isShowAllReply.commentId) {
+      this.isShowAllReply = {
+        commentId,
+        isShowAllReply: true
+      };
+    } else {
+      this.isShowAllReply = {
+        isShowAllReply: !this.isShowAllReply.isShowAllReply
+      };
+    }
   }
 }
