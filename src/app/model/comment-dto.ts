@@ -1,5 +1,6 @@
 import {Video} from './video';
 import {User} from './user';
+import {ReplyDto} from './reply-dto';
 
 export interface CommentDTO {
   id?: number;
@@ -15,4 +16,6 @@ export interface CommentDTO {
   totalLike?: number;
 
   totalDislike?: number;
+
+  replyDTOList?: ReplyDto[];
 }

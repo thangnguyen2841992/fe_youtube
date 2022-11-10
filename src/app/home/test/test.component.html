@@ -1,64 +1,37 @@
-<!DOCTYPE html>
-<html>
-<app-navbar-user></app-navbar-user>
+<div class="container mb-5 mt-5">
+  <div class="card">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="media">
+              <img class="mr-3 rounded-circle" alt="Bootstrap Media Preview" src="https://i.imgur.com/stD0Q19.jpg" />
+              <div class="media-body">
+                <div class="row">
+                  <div class="col-8 d-flex">
+                    <h5>Maria Smantha</h5>
+                    <span style="margin-top: 10px">- 2 hours ago</span>
+                  </div>
+                </div>
+                It is a long established fact that a reader will be distracted by the readable content of a page.
+                <div class="media mt-4">
+                  <a class="pr-3" href="#"><img class="rounded-circle" alt="Bootstrap Media Another Preview" src="https://i.imgur.com/xELPaag.jpg" /></a>
+                  <div class="media-body">
 
-<body class="w3-light-grey w3-content" style="max-width:1600px;">
-
-<app-navbar-home style="margin-bottom: 10px"></app-navbar-home>
-<!-- Sidebar/menu -->
-
-
-<app-side-bar></app-side-bar>
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
-<!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:300px">
-  <br>
-  <div class="row">
-    <div class="col-md-4 col-sm-6 mb-4 pb-2" *ngFor="let video of videos">
-      <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" >
-        <div class="list-card-image">
-          <a style="cursor: pointer">
-          <video width="415" height="240" controls>
-            <source src="{{video.url}}" type="video/mp4">
-          </video>
-          </a>
-          <!--      <a routerLink="/home/food/{{dish.id}}" routerLinkActive="active">-->
-          <!--        <img src="http://localhost:8080/image/{{dish.image}}" alt="" class="img-fluid item-img food-img">-->
-          <!--      </a>-->
-        </div>
-        <div class="p-3 position-relative">
-          <div class="list-card-body">
-            <h6 class="mb-1"><a routerLink="/home/food/{{video.id}}" class="text-black">{{video.name}}</a></h6>
-                    <a routerLink="/home/merchant/{{video.user.id}}" class="merchant-name"><p class="text-gray mb-3 ">{{video.user.username}}</p></a>
-            <p class="text-gray mb-3 time">{{video.dateCreated}}</p>
-            <!--          class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i-->
-            <!--          class="icofont-wall-clock"></i> 20–25 min</span> <span-->
-            <!--          class="float-right text-black price">{{dish.price | number}}đ</span></p>-->
+                    <div class="row">
+                      <div class="col-12 d-flex">
+                        <h5>Simona Disa</h5>
+                        <span style="margin-top: 10px">- 3 hours ago</span>
+                      </div>
+                    </div>
+                    letters, as opposed to using 'Content here, content here', making it look like readable English.
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
     </div>
-  <!-- First Photo Grid-->
-
-
   </div>
-
 </div>
-<script>
-  // Script to open and close sidebar
-  function w3_open() {
-    document.getElementById("mySidebar").style.display = "block";
-    document.getElementById("myOverlay").style.display = "block";
-  }
-
-  function w3_close() {
-    document.getElementById("mySidebar").style.display = "none";
-    document.getElementById("myOverlay").style.display = "none";
-  }
-</script>
-
-</body>
-</html>

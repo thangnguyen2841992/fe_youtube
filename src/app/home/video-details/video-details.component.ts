@@ -14,6 +14,7 @@ import {DislikeCommentService} from '../../service/dislike-comment/dislike-comme
 import {UserService} from '../../service/user/user.service';
 import {User} from '../../model/user';
 import {ShowReplyComment} from '../../model/show-reply-comment';
+import {ReplyService} from '../../service/reply/reply.service';
 
 @Component({
   selector: 'app-video-details',
@@ -35,11 +36,15 @@ export class VideoDetailsComponent implements OnInit {
   commentForm: FormGroup = new FormGroup({
     content: new FormControl('', [Validators.required]),
   });
+  replyForm: FormGroup = new FormGroup({
+    content: new FormControl('', [Validators.required]),
+  });
   comments: CommentDTO[] = [];
   user: User = {};
   videos1: VideoResponse[] = [];
   isPlayVideo = false;
   isShowReply: ShowReplyComment = {};
+  isShowButtonReply = false;
 
   constructor(private activatedRoute: ActivatedRoute,
               private videoService: VideoService,
@@ -51,7 +56,8 @@ export class VideoDetailsComponent implements OnInit {
               private commentService: CommentService,
               private likeCommentService: LikeCommentService,
               private dislikeCommentService: DislikeCommentService,
-              private userService: UserService) {
+              private userService: UserService,
+              private replyService: ReplyService) {
     this.currentUserId = this.authService.currentUserValue.id;
 
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
@@ -165,6 +171,7 @@ export class VideoDetailsComponent implements OnInit {
 
   addNewLikeComment(commentId: number, userId: number) {
     this.likeCommentService.addNewLikeComment(commentId, userId).subscribe((data) => {
+      this.commentForm.reset();
       this.getCommentOfVideo();
     });
   }
@@ -212,5 +219,30 @@ export class VideoDetailsComponent implements OnInit {
       isShowReply: true
     };
     console.log(this.isShowReply);
+  }
+
+  showButtonReply() {
+    this.isShowButtonReply = true;
+  }
+
+  hiddenButtonReply(commentId: number) {
+    this.isShowButtonReply = false;
+    this.isShowReply = {
+      commentId,
+      isShowReply: false
+    };
+  }
+
+  addNewReply(commentId: number) {
+    const replyForm = {
+      content: this.replyForm.value.content,
+
+      commentId,
+
+      userId: this.currentUserId
+    };
+    this.replyService.addNewReply(replyForm).subscribe((data) => {
+      this.replyForm.reset();
+    });
   }
 }
