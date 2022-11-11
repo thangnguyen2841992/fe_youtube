@@ -7,6 +7,7 @@ export interface ReplyDto {
 
   dateCreated?: string;
 
+  totalLike?: number;
 
   comment?: Comment;
 

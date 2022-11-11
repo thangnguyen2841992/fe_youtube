@@ -5,6 +5,7 @@ import {VideoCreateComponent} from './video-create/video-create.component';
 import {TestComponent} from './test/test.component';
 import {VideoDetailsComponent} from './video-details/video-details.component';
 import {FindVideoByHastagComponent} from './find-video-by-hastag/find-video-by-hastag.component';
+import {WatchedVideoComponent} from './watched-video/watched-video.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'hastag/:hastagId',
     component: FindVideoByHastagComponent
+  },
+  {
+    path: 'history/video/:userId',
+    component: WatchedVideoComponent
   }
 ];
 

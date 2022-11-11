@@ -16,7 +16,7 @@ import {User} from '../../model/user';
 import {ShowReplyComment} from '../../model/show-reply-comment';
 import {ReplyService} from '../../service/reply/reply.service';
 import {ShowAllReplyComment} from '../../model/show-all-reply-comment';
-import {CheckLikeComment} from '../../model/check-like-comment';
+import {LikeReplyService} from '../../service/like-reply/like-reply.service';
 
 @Component({
   selector: 'app-video-details',
@@ -31,10 +31,6 @@ export class VideoDetailsComponent implements OnInit {
   checkSubscriber: boolean;
   isLikeVideo: boolean;
   isDisLike: boolean;
-  // isLikeComment: CheckLikeComment = {
-  //
-  // }
-  // isDisLikeComment = false;
   videoUrl: string;
   isShowButton = false;
   commentForm: FormGroup = new FormGroup({
@@ -65,7 +61,8 @@ export class VideoDetailsComponent implements OnInit {
               private likeCommentService: LikeCommentService,
               private dislikeCommentService: DislikeCommentService,
               private userService: UserService,
-              private replyService: ReplyService) {
+              private replyService: ReplyService,
+              private likeReplyService: LikeReplyService) {
     this.currentUserId = this.authService.currentUserValue.id;
 
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
@@ -168,6 +165,7 @@ export class VideoDetailsComponent implements OnInit {
     this.commentService.createNewComment(commentForm).subscribe((data) => {
       this.commentForm.reset();
       this.getCommentOfVideo();
+      this.getVideoByVideoId(this.videoId);
     });
   }
 
@@ -251,6 +249,11 @@ export class VideoDetailsComponent implements OnInit {
     this.replyService.addNewReply(replyForm).subscribe((data) => {
       this.replyForm.reset();
       this.getCommentOfVideo();
+      this.getVideoByVideoId(this.videoId);
+      this.isShowReply = {
+        commentId,
+        isShowReply: true
+      };
     });
   }
 
@@ -265,5 +268,10 @@ export class VideoDetailsComponent implements OnInit {
         isShowAllReply: !this.isShowAllReply.isShowAllReply
       };
     }
+  }
+  addNewLikeReply(replyId: number) {
+    this.likeReplyService.addNewLikeReply(replyId, this.currentUserId).subscribe((data) => {
+      this.getCommentOfVideo();
+    });
   }
 }

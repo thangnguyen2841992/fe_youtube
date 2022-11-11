@@ -210,10 +210,10 @@
                             *ngIf="isShowAllReply.commentId == comment.id && isShowAllReply.isShowAllReply">{{reply.content}}</p>
                           <div style="margin-top: -5px">
                             <button *ngIf="isShowAllReply.commentId == comment.id && isShowAllReply.isShowAllReply"
-                                    (click)="addNewLikeComment(comment.id, currentUserId)" class="btn btn-default"><i
+                                    (click)="addNewLikeReply(reply.id)" class="btn btn-default"><i
                               class="fa-regular fa-thumbs-up"></i>
                               <!--                                <i *ngIf="isLikeComment" class="fa-solid fa-thumbs-up"></i> -->
-                              {{comment.totalLike}}</button>
+                              {{reply.totalLike}}</button>
                             <button *ngIf="isShowAllReply.commentId == comment.id && isShowAllReply.isShowAllReply"
                                     (click)="addNewDisLikeComment(comment.id, currentUserId)" class="btn btn-default"><i
                               class="fa-regular fa-thumbs-down"></i>
