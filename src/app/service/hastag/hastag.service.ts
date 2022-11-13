@@ -17,4 +17,7 @@ export class HastagService {
   getAll(): Observable<Hastag[]> {
     return this.http.get<Hastag[]>(`${API_URL}`);
   }
+  getById(hastagId: number): Observable<Hastag> {
+    return this.http.get<Hastag>(`${API_URL}/${hastagId}`);
+  }
 }

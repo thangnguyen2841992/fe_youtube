@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Video} from '../../model/video';
 import {VideoService} from '../../service/video/video.service';
 import {AuthService} from '../../service/auth/auth.service';
+import {WatchedVideoService} from '../../service/watched-video/watched-video.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,8 @@ export class HomeComponent implements OnInit {
   currentUserId: number;
 
   constructor(private videoService: VideoService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private watchedVideoService: WatchedVideoService) {
     this.currentUserId = this.authService.currentUserValue.id;
   }
 
@@ -24,6 +26,10 @@ export class HomeComponent implements OnInit {
   getAllVideo() {
     this.videoService.getAllVideo(this.currentUserId).subscribe((data) => {
       this.videos = data;
+    });
+  }
+  addNewWatchedVideo(videoId: number) {
+    this.watchedVideoService.addNewWatchedVideo(videoId, this.currentUserId).subscribe((data) => {
     });
   }
 }

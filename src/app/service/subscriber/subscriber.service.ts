@@ -21,4 +21,7 @@ export class SubscriberService {
   checkMember(userId: number, memberId: number): Observable<Check> {
     return this.http.post<Check>(`${API_URL}/checkMember/user/${userId}/member/${memberId}`, memberId);
   }
+  unSubscriber(userId: number, memberId: number): Observable<Subscriber> {
+    return this.http.delete(`${API_URL}/unSubscribe/user/${userId}/member/${memberId}`);
+  }
 }

@@ -15,10 +15,11 @@ import { VideoDetailsComponent } from './video-details/video-details.component';
 import { FindVideoByHastagComponent } from './find-video-by-hastag/find-video-by-hastag.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { CardVideoDetailsComponent } from './card-video-details/card-video-details.component';
+import { WatchedVideoComponent } from './watched-video/watched-video.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, VideoCreateComponent, TestComponent, VideoDetailsComponent, FindVideoByHastagComponent, CardVideoDetailsComponent],
+  declarations: [HomeComponent, VideoCreateComponent, TestComponent, VideoDetailsComponent, FindVideoByHastagComponent, CardVideoDetailsComponent, WatchedVideoComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

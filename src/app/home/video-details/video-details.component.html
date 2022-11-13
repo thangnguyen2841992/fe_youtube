@@ -39,9 +39,36 @@
                 <button style="margin-right: 40px" *ngIf="!checkSubscriber"
                         (click)="addNewMember(video.user.id, currentUserId)" class="btn btn-dark" id="subcrise">Đăng ký
                 </button>
-                <div>
-                  <button *ngIf="checkSubscriber" class="btn btn-default" disabled id="subcrise1">Đã đăng ký</button>
-                  <span> </span>
+                <div class="dropdown">
+                  <button style="margin-top: 10px" *ngIf="checkSubscriber" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                     Đã đăng ký
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
+<!--                    <button (click)="unSubscriber(video.user.id)" class="dropdown-item btn btn-danger" type="button">Hủy đăng ký kênh</button>-->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                      Hủy đăng ký
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            ...
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" (click)="unSubscriber(video.user.id)" class="btn btn-primary">Save changes</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div *ngIf="checkSubscriber" class="div_left2">
@@ -210,10 +237,10 @@
                             *ngIf="isShowAllReply.commentId == comment.id && isShowAllReply.isShowAllReply">{{reply.content}}</p>
                           <div style="margin-top: -5px">
                             <button *ngIf="isShowAllReply.commentId == comment.id && isShowAllReply.isShowAllReply"
-                                    (click)="addNewLikeComment(comment.id, currentUserId)" class="btn btn-default"><i
+                                    (click)="addNewLikeReply(reply.id)" class="btn btn-default"><i
                               class="fa-regular fa-thumbs-up"></i>
                               <!--                                <i *ngIf="isLikeComment" class="fa-solid fa-thumbs-up"></i> -->
-                              {{comment.totalLike}}</button>
+                              {{reply.totalLike}}</button>
                             <button *ngIf="isShowAllReply.commentId == comment.id && isShowAllReply.isShowAllReply"
                                     (click)="addNewDisLikeComment(comment.id, currentUserId)" class="btn btn-default"><i
                               class="fa-regular fa-thumbs-down"></i>
