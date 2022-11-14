@@ -17,6 +17,7 @@ import {ShowReplyComment} from '../../model/show-reply-comment';
 import {ReplyService} from '../../service/reply/reply.service';
 import {ShowAllReplyComment} from '../../model/show-all-reply-comment';
 import {LikeReplyService} from '../../service/like-reply/like-reply.service';
+import {IsLikeComment} from '../../model/is-like-comment';
 
 @Component({
   selector: 'app-video-details',
@@ -49,7 +50,7 @@ export class VideoDetailsComponent implements OnInit {
     commentId: 0,
     isShowAllReply: false
   };
-
+  isLikeComment: IsLikeComment;
   constructor(private activatedRoute: ActivatedRoute,
               private videoService: VideoService,
               private authService: AuthService,
@@ -200,6 +201,10 @@ export class VideoDetailsComponent implements OnInit {
 
   checkLikeComment(commentId: number, userId: number) {
     this.likeCommentService.checkLikeComment(commentId, userId).subscribe((data) => {
+      this.isLikeComment = {
+        commentId,
+        isLikeComment: true
+      };
     });
   }
 

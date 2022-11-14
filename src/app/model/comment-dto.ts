@@ -18,4 +18,6 @@ export interface CommentDTO {
   totalDislike?: number;
 
   replyDTOList?: ReplyDto[];
+
+  listUserLikes?: User[];
 }
