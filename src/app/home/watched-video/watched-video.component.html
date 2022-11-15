@@ -14,11 +14,38 @@
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px">
   <h3>Nhật ký xem</h3>
+    <div class="container_swap" *ngFor="let video of watchedVideos">
+<!--      <h4>{{video.watchedTime}}</h4>-->
+      <div class="left">
+    <div class="col-md-4 col-sm-4 mb-4 pb-2" >
+      <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" >
+        <div class="list-card-image">
+          <a  routerLink="/video/{{video.video.id}}" style="cursor: pointer">
+            <video width="415" height="240"  >
+              <source src="{{video.video.url}}" type="video/mp4">
+            </video>
+          </a>
+        </div>
+      </div>
+    </div>
+      </div>
+      <div class="right">
+        <div class="list-card-body">
+          <h4 class="mb-1"><a class="text-black">{{video.video.name}}</a></h4>
+          <div class="container_swap1">
+            <div class="div_left1">
+              <a><h5 class="text-gray mb-3 "><img src="http://localhost:8080/image/{{video.video.user.avatar}}"
+                                                  style="width: 40px; border-radius: 50%"> {{video.video.user.studioName}}
+                <i style="font-size: 13px" class="fa-solid fa-circle-check"></i></h5></a>
+            </div>
+          </div>
+          <div>
+          </div>
+        </div>
 
-
+      </div>
+    </div>
 </div>
-
-
 <script>
   // Script to open and close sidebar
   function w3_open() {
@@ -31,6 +58,5 @@
     document.getElementById("myOverlay").style.display = "none";
   }
 </script>
-
 </body>
 </html>

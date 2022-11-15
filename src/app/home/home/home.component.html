@@ -25,18 +25,12 @@
               <source src="{{video.url}}" type="video/mp4">
             </video>
           </a>
-          <!--      <a routerLink="/home/food/{{dish.id}}" routerLinkActive="active">-->
-          <!--        <img src="http://localhost:8080/image/{{dish.image}}" alt="" class="img-fluid item-img food-img">-->
-          <!--      </a>-->
         </div>
         <div class="p-3 position-relative">
           <div class="list-card-body">
             <h6 class="mb-1"><a routerLink="/home/food/{{video.id}}" class="text-black">{{video.name}}</a></h6>
             <a routerLink="/home/merchant/{{video.user.id}}" class="merchant-name"><h6 class="text-gray mb-3 "><img src="http://localhost:8080/image/{{video.user.avatar}}" style="width: 40px; border-radius: 50%"> {{video.user.studioName}} <i style="font-size: 13px" class="fa-solid fa-circle-check"></i></h6></a>
             <p style="margin-left: 42px; margin-top: -25px" class="text-gray mb-3 time">{{video.dateCreated}}</p>
-            <!--          class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i-->
-            <!--          class="icofont-wall-clock"></i> 20–25 min</span> <span-->
-            <!--          class="float-right text-black price">{{dish.price | number}}đ</span></p>-->
           </div>
         </div>
       </div>

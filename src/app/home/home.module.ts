@@ -16,10 +16,11 @@ import { FindVideoByHastagComponent } from './find-video-by-hastag/find-video-by
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { CardVideoDetailsComponent } from './card-video-details/card-video-details.component';
 import { WatchedVideoComponent } from './watched-video/watched-video.component';
+import { SearchByNameComponent } from './search-by-name/search-by-name.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, VideoCreateComponent, TestComponent, VideoDetailsComponent, FindVideoByHastagComponent, CardVideoDetailsComponent, WatchedVideoComponent],
+  declarations: [HomeComponent, VideoCreateComponent, TestComponent, VideoDetailsComponent, FindVideoByHastagComponent, CardVideoDetailsComponent, WatchedVideoComponent, SearchByNameComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

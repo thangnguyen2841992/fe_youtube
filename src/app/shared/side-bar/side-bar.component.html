@@ -9,11 +9,19 @@
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa-solid fa-house" style="margin-right: 5px"></i> Trang chủ</a>
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-regular fa-circle-play" style="margin-right: 5px"></i> Shorts</a>
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-brands fa-youtube" style="margin-right: 5px"></i> Kênh đăng ký</a>
+    <hr>
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-solid fa-photo-film" style="margin-right: 5px"></i> Thư viện</a>
-    <a routerLinkActive="/history/video/{{currentUserId}}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-regular fa-clock" style="margin-right: 5px"></i> Video đã xem</a>
+    <a routerLink="/history/video/{{currentUserId}}" class="w3-bar-item w3-button w3-padding"><i class="fa-regular fa-clock" style="margin-right: 5px"></i> Video đã xem</a>
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-brands fa-youtube" style="margin-right: 5px"></i> Video của bạn</a>
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-solid fa-clock" style="margin-right: 5px"></i> Xem sau</a>
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-regular fa-thumbs-up" style="margin-right: 5px"></i> Video đã thích</a>
+    <hr>
+    <h5 style="margin-left: 20px">Kênh đăng ký</h5>
+    <div *ngFor="let studio of studios">
+      <a  class="merchant-name"><p class="text-gray mb-3 "><img  src="http://localhost:8080/image/{{studio.user.avatar}}" style="width: 30px; border-radius: 50%; margin-left: 20px"> {{studio.user.studioName}} </p></a>
+
+    </div>
+
   </div>
 </nav>
 

@@ -6,6 +6,7 @@ import { NavbarUserComponent } from './navbar-user/navbar-user.component';
 import { FooterComponent } from './footer/footer.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { NavbarHomeComponent } from './navbar-home/navbar-home.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { NavbarHomeComponent } from './navbar-home/navbar-home.component';
   ],
     imports: [
         CommonModule,
-        SharedRoutingModule
+        SharedRoutingModule,
+        ReactiveFormsModule
     ]
 })
 export class SharedModule { }

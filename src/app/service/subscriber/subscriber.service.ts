@@ -24,4 +24,7 @@ export class SubscriberService {
   unSubscriber(userId: number, memberId: number): Observable<Subscriber> {
     return this.http.delete(`${API_URL}/unSubscribe/user/${userId}/member/${memberId}`);
   }
+  getAllSubscribeOfUser(memberId: number): Observable<Subscriber[]> {
+    return this.http.get<Subscriber[]>(`${API_URL}/member/${memberId}`);
+  }
 }
