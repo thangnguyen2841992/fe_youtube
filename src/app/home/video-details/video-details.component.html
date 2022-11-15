@@ -114,8 +114,8 @@
                 <i class="fa-solid fa-arrow-up-wide-short"></i> Sắp xếp theo
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" type="button">Bình luận hàng đầu</button>
-                <button class="dropdown-item" type="button">Mới nhất xếp trước</button>
+                <button (click)="showListCommentOrderByTotalLike()" class="dropdown-item" type="button">Bình luận hàng đầu</button>
+                <button (click)="getCommentOfVideo()" class="dropdown-item" type="button">Mới nhất xếp trước</button>
               </div>
             </div>
           </div>
@@ -161,7 +161,7 @@
                         <button
                           (click)="addNewLikeComment(comment.id, currentUserId); checkLikeComment(comment.id, currentUserId)"
                           class="btn btn-default"><i  class="fa-regular fa-thumbs-up"></i>
-                                                    <i class="fa-solid fa-thumbs-up"></i>
+<!--                                                    <i class="fa-solid fa-thumbs-up"></i>-->
                           {{comment.totalLike}}</button>
                         <button (click)="addNewDisLikeComment(comment.id, currentUserId)" class="btn btn-default">
                           <i class="fa-regular fa-thumbs-down"></i>

@@ -286,4 +286,9 @@ export class VideoDetailsComponent implements OnInit {
       this.getVideoByVideoId(this.videoId);
     });
   }
+  showListCommentOrderByTotalLike() {
+    this.commentService.showListCommentOrderByTotalLike(this.videoId).subscribe((data) => {
+      this.comments = data;
+    });
+  }
 }

@@ -21,4 +21,7 @@ export class CommentService {
   getCommentOfVideo(videoId: number): Observable<CommentDTO[]> {
     return this.http.get<CommentDTO[]>(`${API_URL}/video/${videoId}`);
   }
+  showListCommentOrderByTotalLike(videoId: number): Observable<CommentDTO[]> {
+    return this.http.get<CommentDTO[]>(`${API_URL}/showListCommentOrderByTotalLike/video/${videoId}`);
+  }
 }
