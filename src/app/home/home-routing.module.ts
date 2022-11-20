@@ -7,6 +7,7 @@ import {VideoDetailsComponent} from './video-details/video-details.component';
 import {FindVideoByHastagComponent} from './find-video-by-hastag/find-video-by-hastag.component';
 import {WatchedVideoComponent} from './watched-video/watched-video.component';
 import {SearchByNameComponent} from './search-by-name/search-by-name.component';
+import {LikedVideoComponent} from './liked-video/liked-video.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'history/video/:userId',
     component: WatchedVideoComponent
+  },
+  {
+    path: 'history/like',
+    component: LikedVideoComponent
   },
   {
     path: 'searchByName/:name',

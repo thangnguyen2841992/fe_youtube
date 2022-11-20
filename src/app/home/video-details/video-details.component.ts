@@ -18,6 +18,7 @@ import {ReplyService} from '../../service/reply/reply.service';
 import {ShowAllReplyComment} from '../../model/show-all-reply-comment';
 import {LikeReplyService} from '../../service/like-reply/like-reply.service';
 import {IsLikeComment} from '../../model/is-like-comment';
+import {LikedVideoService} from '../../service/liked-video/liked-video.service';
 
 @Component({
   selector: 'app-video-details',
@@ -63,7 +64,8 @@ export class VideoDetailsComponent implements OnInit {
               private dislikeCommentService: DislikeCommentService,
               private userService: UserService,
               private replyService: ReplyService,
-              private likeReplyService: LikeReplyService) {
+              private likeReplyService: LikeReplyService,
+              private likedVideoService: LikedVideoService) {
     this.currentUserId = this.authService.currentUserValue.id;
 
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
@@ -291,4 +293,6 @@ export class VideoDetailsComponent implements OnInit {
       this.comments = data;
     });
   }
+
+
 }
