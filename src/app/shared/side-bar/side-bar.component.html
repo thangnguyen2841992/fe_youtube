@@ -3,7 +3,6 @@
     <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
       <i class="fa fa-remove"></i>
     </a>
-
   </div>
   <div class="w3-bar-block">
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa-solid fa-house" style="margin-right: 5px"></i> Trang chủ</a>
@@ -19,12 +18,9 @@
     <h5 style="margin-left: 20px">Kênh đăng ký</h5>
     <div *ngFor="let studio of studios">
       <a  class="merchant-name"><p class="text-gray mb-3 "><img  src="http://localhost:8080/image/{{studio.user.avatar}}" style="width: 30px; border-radius: 50%; margin-left: 20px"> {{studio.user.studioName}} </p></a>
-
     </div>
-
   </div>
 </nav>
-
 <script>
   function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
@@ -32,33 +28,3 @@
   }
 </script>
 
-<!--<div class="filters shadow-sm rounded bg-white mb-3">-->
-<!--  <div class="filters-header border-bottom pl-4 pr-4 pt-3 pb-3">-->
-<!--    <a class="m-0"><span><i class="fa-solid fa-house" style="margin-right: 5px"></i> </span>  Trang chủ</a>-->
-<!--    <br>-->
-<!--    <br>-->
-<!--    <a class="m-0"><span><i class="fa-regular fa-circle-play" style="margin-right: 5px"></i></span> Shorts</a>-->
-<!--    <br>-->
-<!--    <br>-->
-<!--    <a class="m-0"><span><i class="fa-brands fa-youtube" style="margin-right: 5px"></i></span> Kênh đăng ký</a>-->
-<!--  </div>-->
-<!--  <div class="filters-header border-bottom pl-4 pr-4 pt-3 pb-3">-->
-<!--    <a class="m-0"><span><i class="fa-solid fa-photo-film" style="margin-right: 5px"></i></span> Thư viện</a>-->
-<!--    <br>-->
-<!--    <br>-->
-<!--    <a class="m-0"> <span><i class="fa-regular fa-clock" style="margin-right: 5px"></i></span> Video đã xem</a>-->
-<!--    <br>-->
-<!--    <br>-->
-<!--    <a class="m-0"> <span><i class="fa-brands fa-youtube" style="margin-right: 5px"></i></span> Video của bạn</a>-->
-<!--    <br>-->
-<!--    <br>-->
-<!--    <a class="m-0"><span><i class="fa-solid fa-clock" style="margin-right: 5px"></i></span> Xem sau</a>-->
-<!--    <br>-->
-<!--    <br>-->
-<!--    <a class="m-0"><span><i class="fa-regular fa-thumbs-up" style="margin-right: 5px"></i></span> Video đã thích</a>-->
-<!--  </div>-->
-<!--  <div class="filters-header border-bottom pl-4 pr-4 pt-3 pb-3">-->
-<!--    <h6 class="m-0">Kênh đăng ký</h6><br>-->
-
-<!--  </div>-->
-<!--</div>-->

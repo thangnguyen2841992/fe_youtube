@@ -28,13 +28,16 @@
             <h4 class="mb-1"><a class="text-black">{{video.name}}</a></h4>
             <div class="container_swap">
               <div class="div_left">
-                <a><h5 class="text-gray mb-3 "><img src="http://localhost:8080/image/{{video.user.avatar}}"
-                                                    style="width: 40px; border-radius: 50%"> {{video.user.studioName}}
-                  <i style="font-size: 13px" class="fa-solid fa-circle-check"></i></h5></a>
+                <a class="text-gray mb-3 "><img src="http://localhost:8080/image/{{video.user.avatar}}"
+                                                style="width: 40px; border-radius: 50%"></a>
+              </div>
+              <div class="div_left_studio">
+                <h5>{{video.user.studioName}} <i style="font-size: 13px" class="fa-solid fa-circle-check"></i></h5>
                 <p id="date-created" class="text-gray mb-3 time">{{video.totalSubscriber}} người đăng ký</p>
                 <p style="margin-left: -155px" id="date-created1" class="text-gray mb-3 time">{{video.dateCreated}}</p>
-
               </div>
+
+
               <div class="div_left1">
                 <button style="margin-right: 40px" *ngIf="!checkSubscriber"
                         (click)="addNewMember(video.user.id, currentUserId)" class="btn btn-dark" id="subcrise">Đăng ký
@@ -45,7 +48,6 @@
                      Đã đăng ký
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
-<!--                    <button (click)="unSubscriber(video.user.id)" class="dropdown-item btn btn-danger" type="button">Hủy đăng ký kênh</button>-->
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-default dropdown-item" data-toggle="modal"
                             data-target="#unSubscribe">
@@ -56,7 +58,7 @@
                 </div>
               </div>
               <div *ngIf="checkSubscriber" class="div_left2">
-                <i style=" margin-left: 10px;margin-top: 20px; margin-left: -60px" class="fa-solid fa-bell"></i>
+                <i id="bell" class="fa-solid fa-bell"></i>
               </div>
               <div class="div_right1">
                 <button (click)="addNewLike(videoId, currentUserId)" class="btn btn-default"><i *ngIf="!isLikeVideo"
@@ -89,6 +91,7 @@
               <div class="list-card-body">
                 <h5 class="mb-1"><a (click)="reloadComponent(video.id)" routerLink="/video/{{video.id}}"
                                     class="text-black">{{video.name}}</a></h5>
+
                 <a routerLink="/home/merchant/{{video.user.id}}" class="merchant-name"><h6 class="text-gray mb-3 "><img
                   src="http://localhost:8080/image/{{video.user.avatar}}"
                   style="width: 40px; border-radius: 50%"> {{video.user.studioName}} <i style="font-size: 13px"
