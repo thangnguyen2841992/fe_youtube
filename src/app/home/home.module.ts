@@ -18,6 +18,8 @@ import { CardVideoDetailsComponent } from './card-video-details/card-video-detai
 import { WatchedVideoComponent } from './watched-video/watched-video.component';
 import { SearchByNameComponent } from './search-by-name/search-by-name.component';
 import { LikedVideoComponent } from './liked-video/liked-video.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {MatCardModule} from '@angular/material';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { LikedVideoComponent } from './liked-video/liked-video.component';
     FormsModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    ScrollingModule
+    ScrollingModule,
+    InfiniteScrollModule,
+    MatCardModule
   ],
   providers: [
     AngularFireStorage

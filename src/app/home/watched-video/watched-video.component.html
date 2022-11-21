@@ -14,11 +14,39 @@
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px">
   <h3>Nhật ký xem</h3>
-    <div class="container_swap" *ngFor="let video of watchedVideos">
+    <div class="container_swap" *ngFor="let video of watchedVideos, index as i">
 <!--      <h4>{{video.watchedTime}}</h4>-->
       <div class="left">
     <div class="col-md-4 col-sm-4 mb-4 pb-2" >
+<!--      <div-->
+<!--        infinite-scroll-->
+<!--        [infiniteScrollDistance]=1-->
+<!--        [infiniteScrollUpDistance]=2-->
+<!--        (scrolled)="onScroll()"-->
+
+<!--      >-->
+<!--        <mat-card *ngFor="let video of watchedVideos">-->
+<!--          <mat-card-header>-->
+<!--            <div>-->
+<!--              <mat-card-title>{{ video.video.name }}</mat-card-title>-->
+<!--              <mat-card-subtitle>Temperament: {{ video.user.studioName }}</mat-card-subtitle>-->
+<!--            </div>-->
+<!--          </mat-card-header>-->
+<!--          <mat-card-content>-->
+<!--            <div class="img-container">-->
+<!--              <a  routerLink="/video/{{video.video.id}}" style="cursor: pointer">-->
+<!--                <video width="415" height="240"  >-->
+<!--                  <source src="{{video.video.url}}" type="video/mp4">-->
+<!--                </video>-->
+<!--              </a>            </div>-->
+<!--&lt;!&ndash;            <div>&ndash;&gt;-->
+<!--&lt;!&ndash;              <span>{{ cat.description }}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--          </mat-card-content>-->
+<!--        </mat-card>-->
+<!--      </div>-->
       <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" >
+        <h4>{{video.watchedTime}}</h4>
         <div class="list-card-image">
           <a  routerLink="/video/{{video.video.id}}" style="cursor: pointer">
             <video width="415" height="240"  >

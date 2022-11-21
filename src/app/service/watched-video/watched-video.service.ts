@@ -14,7 +14,7 @@ export class WatchedVideoService {
   addNewWatchedVideo(videoId: number, userId: number): Observable<any> {
     return this.http.post(`${API_URL}/video/${videoId}/user/${userId}`, videoId);
   }
-  getAllWatchedVideoOfUser(userId: number): Observable<WatchedVideo[]> {
-    return this.http.get<WatchedVideo[]>(`${API_URL}/user/${userId}`);
+  getAllWatchedVideoOfUser(userId: number, limit: number): Observable<WatchedVideo[]> {
+    return this.http.get<WatchedVideo[]>(`${API_URL}/user/${userId}?limit=${limit}`);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../../service/auth/auth.service';
 import {WatchedVideoService} from '../../service/watched-video/watched-video.service';
@@ -12,6 +12,8 @@ import {WatchedVideo} from '../../model/watched-video';
 export class WatchedVideoComponent implements OnInit {
   currentUserId: number;
   watchedVideos: WatchedVideo[] = [];
+  limit = 5;
+
   constructor(private authService: AuthService,
               private watchedVideoService: WatchedVideoService) {
     this.currentUserId = this.authService.currentUserValue.id;
@@ -20,10 +22,15 @@ export class WatchedVideoComponent implements OnInit {
   ngOnInit() {
     this.getAllWatchedVideosOfUser();
   }
+
   getAllWatchedVideosOfUser() {
-    this.watchedVideoService.getAllWatchedVideoOfUser(this.currentUserId).subscribe((data) => {
+    this.watchedVideoService.getAllWatchedVideoOfUser(this.currentUserId, this.limit).subscribe((data) => {
       this.watchedVideos = data;
     });
+  }
+
+  onScroll(): void {
+    this.limit = this.limit + 5;
   }
 
 }
