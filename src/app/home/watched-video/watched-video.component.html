@@ -45,8 +45,11 @@
 <!--          </mat-card-content>-->
 <!--        </mat-card>-->
 <!--      </div>-->
+      <div>
+        <h4 *ngIf="video.watchedTime !== '' ">{{video.watchedTime}}</h4>
+
+      </div>
       <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" >
-        <h4>{{video.watchedTime}}</h4>
         <div class="list-card-image">
           <a  routerLink="/video/{{video.video.id}}" style="cursor: pointer">
             <video width="415" height="240"  >
@@ -57,7 +60,22 @@
       </div>
     </div>
       </div>
-      <div class="right">
+      <div class="right" *ngIf="video.watchedTime !== ''">
+        <div class="list-card-body">
+          <h4 class="mb-1"><a class="text-black">{{video.video.name}}</a></h4>
+          <div class="container_swap1">
+            <div class="div_left1">
+              <a><h5 class="text-gray mb-3 "><img src="http://localhost:8080/image/{{video.video.user.avatar}}"
+                                                  style="width: 40px; border-radius: 50%"> {{video.video.user.studioName}}
+                <i style="font-size: 13px" class="fa-solid fa-circle-check"></i></h5></a>
+            </div>
+          </div>
+          <div>
+          </div>
+        </div>
+
+      </div>
+      <div class="right1" *ngIf="video.watchedTime === ''">
         <div class="list-card-body">
           <h4 class="mb-1"><a class="text-black">{{video.video.name}}</a></h4>
           <div class="container_swap1">

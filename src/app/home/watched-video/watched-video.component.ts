@@ -26,6 +26,17 @@ export class WatchedVideoComponent implements OnInit {
   getAllWatchedVideosOfUser() {
     this.watchedVideoService.getAllWatchedVideoOfUser(this.currentUserId, this.limit).subscribe((data) => {
       this.watchedVideos = data;
+      let time = this.watchedVideos[0].watchedTime;
+      console.log(time);
+      for (let i = 1; i < this.watchedVideos.length; i++) {
+        if (this.watchedVideos[i].watchedTime === time) {
+          this.watchedVideos[i].watchedTime = '';
+        }
+        if (this.watchedVideos[i].watchedTime !== time) {
+          time = this.watchedVideos[i].watchedTime;
+          continue;
+        }
+      }
     });
   }
 

@@ -9,5 +9,12 @@
   float: left;
   width: 700px;
   margin-left: -820px;
+  margin-top: 30px;
 }
 
+.right1 {
+  float: left;
+  width: 700px;
+  margin-left: -820px;
+  margin-top: -13px;
+}
