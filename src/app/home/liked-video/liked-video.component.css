@@ -1,0 +1,12 @@
+.container_swap{
+  width: 2000px;
+}
+.left {
+  float: left;
+  width: 1250px;
+}
+.right {
+  float: left;
+  width: 700px;
+  margin-left: -820px;
+}

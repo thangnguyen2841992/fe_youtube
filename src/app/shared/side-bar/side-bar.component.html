@@ -13,7 +13,7 @@
     <a routerLink="/history/video/{{currentUserId}}" class="w3-bar-item w3-button w3-padding"><i class="fa-regular fa-clock" style="margin-right: 5px"></i> Video đã xem</a>
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-brands fa-youtube" style="margin-right: 5px"></i> Video của bạn</a>
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-solid fa-clock" style="margin-right: 5px"></i> Xem sau</a>
-    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-regular fa-thumbs-up" style="margin-right: 5px"></i> Video đã thích</a>
+    <a routerLink="/history/like"  class="w3-bar-item w3-button w3-padding"><i class="fa-regular fa-thumbs-up" style="margin-right: 5px"></i> Video đã thích</a>
     <hr>
     <h5 style="margin-left: 20px">Kênh đăng ký</h5>
     <div *ngFor="let studio of studios">
