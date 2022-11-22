@@ -2,7 +2,7 @@
 <html>
 <app-navbar-user></app-navbar-user>
 
-<body class="w3-light-grey w3-content" style="max-width:1600px;">
+<body class="w3-light-grey w3-content" style="max-width:1900px;">
 
 <app-navbar-home style="margin-bottom: 10px"></app-navbar-home>
 <!-- Sidebar/menu -->
@@ -17,7 +17,7 @@
   <h3>Tất cả video</h3>
 
   <div class="row">
-    <div class="col-md-4 col-sm-6 mb-4 pb-2" *ngFor="let video of videos">
+    <div class="col-md-3 col-sm-6 mb-4 pb-2" *ngFor="let video of videos">
       <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" >
         <div class="list-card-image">
           <a (click)="addNewWatchedVideo(video.id)" routerLink="/video/{{video.id}}" style="cursor: pointer">

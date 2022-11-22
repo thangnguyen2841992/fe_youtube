@@ -31,10 +31,8 @@ export class WatchedVideoComponent implements OnInit {
       for (let i = 1; i < this.watchedVideos.length; i++) {
         if (this.watchedVideos[i].watchedTime === time) {
           this.watchedVideos[i].watchedTime = '';
-        }
-        if (this.watchedVideos[i].watchedTime !== time) {
+        } else {
           time = this.watchedVideos[i].watchedTime;
-          continue;
         }
       }
     });

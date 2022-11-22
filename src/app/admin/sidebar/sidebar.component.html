@@ -1,0 +1,44 @@
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" id="imageDropdown" data-toggle="dropdown" style="margin-right: 100px">
+      <img src="http://localhost:8080/image/{{user.avatar}}" style="width: 120px;  border-radius: 50%; height: auto; margin-left: 70px">
+    </a>
+    <h5 style="margin-left: 70px">Kênh của bạn</h5>
+    <p style="margin-left: 70px">{{user.studioName}}</p>
+    <hr>
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa-solid fa-house" style="margin-right: 5px"></i> Trang tổng quan</a>
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-regular fa-circle-play" style="margin-right: 5px"></i> Nội dung</a>
+
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-brands fa-youtube" style="margin-right: 5px"></i> Danh sách phát</a>
+
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-solid fa-photo-film" style="margin-right: 5px"></i> Số liệu phân tích</a>
+
+    <a routerLink="/history/video/{{currentUserId}}" class="w3-bar-item w3-button w3-padding"><i class="fa-regular fa-clock" style="margin-right: 5px"></i> Bình luận</a>
+
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-brands fa-youtube" style="margin-right: 5px"></i> Phụ đề</a>
+
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-solid fa-clock" style="margin-right: 5px"></i> Bản quyền</a>
+
+    <a routerLink="/history/like"  class="w3-bar-item w3-button w3-padding"><i class="fa-regular fa-thumbs-up" style="margin-right: 5px"></i> Kiếm tiền</a>
+
+    <a routerLink="/history/like"  class="w3-bar-item w3-button w3-padding"><i class="fa-regular fa-thumbs-up" style="margin-right: 5px"></i> Tuỳ chỉnh</a>
+
+    <a routerLink="/history/like"  class="w3-bar-item w3-button w3-padding"><i class="fa-regular fa-thumbs-up" style="margin-right: 5px"></i> Thư viện âm thanh</a>
+    <hr>
+    <a routerLink="/history/like"  class="w3-bar-item w3-button w3-padding"><i class="fa-regular fa-thumbs-up" style="margin-right: 5px"></i> Cài đặt</a>
+    <a routerLink="/history/like"  class="w3-bar-item w3-button w3-padding"><i class="fa-regular fa-thumbs-up" style="margin-right: 5px"></i> Gửi phản hồi</a>
+
+  </div>
+</nav>
+<script>
+  function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+  }
+</script>
+

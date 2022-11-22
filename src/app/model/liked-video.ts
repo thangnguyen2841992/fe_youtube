@@ -4,7 +4,7 @@ import {User} from './user';
 export interface LikedVideo {
   id?: number;
 
-  likedTime?: string;
+  likedVideoTime?: string;
 
 
   video?: VideoResponse;

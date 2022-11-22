@@ -1,52 +1,24 @@
 <!DOCTYPE html>
 <html>
-<app-navbar-user></app-navbar-user>
+<app-navbar></app-navbar>
 
-<body class="w3-light-grey w3-content" style="max-width:1600px;">
+<body class="w3-light-grey w3-content" style="max-width:1900px;">
 
 <!-- Sidebar/menu -->
-
-
-<app-side-bar></app-side-bar>
+<app-sidebar></app-sidebar>
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px">
-  <h3>Video đã like</h3>
-  <div class="container_swap" *ngFor="let video of likedVideos, index as i">
+  <h3>Nội dung của kênh</h3>
+  <div class="container_swap" *ngFor="let video of watchedVideos, index as i">
     <!--      <h4>{{video.watchedTime}}</h4>-->
     <div class="left">
       <div class="col-md-4 col-sm-4 mb-4 pb-2" >
-        <!--      <div-->
-        <!--        infinite-scroll-->
-        <!--        [infiniteScrollDistance]=1-->
-        <!--        [infiniteScrollUpDistance]=2-->
-        <!--        (scrolled)="onScroll()"-->
-
-        <!--      >-->
-        <!--        <mat-card *ngFor="let video of watchedVideos">-->
-        <!--          <mat-card-header>-->
-        <!--            <div>-->
-        <!--              <mat-card-title>{{ video.video.name }}</mat-card-title>-->
-        <!--              <mat-card-subtitle>Temperament: {{ video.user.studioName }}</mat-card-subtitle>-->
-        <!--            </div>-->
-        <!--          </mat-card-header>-->
-        <!--          <mat-card-content>-->
-        <!--            <div class="img-container">-->
-        <!--              <a  routerLink="/video/{{video.video.id}}" style="cursor: pointer">-->
-        <!--                <video width="415" height="240"  >-->
-        <!--                  <source src="{{video.video.url}}" type="video/mp4">-->
-        <!--                </video>-->
-        <!--              </a>            </div>-->
-        <!--&lt;!&ndash;            <div>&ndash;&gt;-->
-        <!--&lt;!&ndash;              <span>{{ cat.description }}</span>&ndash;&gt;-->
-        <!--&lt;!&ndash;            </div>&ndash;&gt;-->
-        <!--          </mat-card-content>-->
-        <!--        </mat-card>-->
-        <!--      </div>-->
         <div>
-          <h4 *ngIf="video.likedVideoTime !== '' ">{{video.likedVideoTime}}</h4>
+          <h4 *ngIf="video.watchedTime !== '' ">{{video.watchedTime}}</h4>
+
         </div>
         <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" >
           <div class="list-card-image">
@@ -59,7 +31,7 @@
         </div>
       </div>
     </div>
-    <div class="right" *ngIf="video.likedVideoTime !== ''">
+    <div class="right" *ngIf="video.watchedTime !== ''">
       <div class="list-card-body">
         <h4 class="mb-1"><a class="text-black">{{video.video.name}}</a></h4>
         <div class="container_swap1">
@@ -74,7 +46,7 @@
       </div>
 
     </div>
-    <div class="right1" *ngIf="video.likedVideoTime === ''">
+    <div class="right1" *ngIf="video.watchedTime === ''">
       <div class="list-card-body">
         <h4 class="mb-1"><a class="text-black">{{video.video.name}}</a></h4>
         <div class="container_swap1">

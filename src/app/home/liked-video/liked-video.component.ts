@@ -12,6 +12,7 @@ export class LikedVideoComponent implements OnInit {
 
   likedVideos: LikedVideo[] = [];
   currentUserID: number;
+  limit = 5;
 
   constructor(private likedVideoService: LikedVideoService,
               private authService: AuthService) {
@@ -19,12 +20,20 @@ export class LikedVideoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllLikedVideoOfUser();
+    this.getAllLikedVideosOfUser();
   }
-
-  getAllLikedVideoOfUser() {
-    this.likedVideoService.getAllLikedVideoOfUser(this.currentUserID).subscribe((data) => {
+  getAllLikedVideosOfUser() {
+    this.likedVideoService.getAllLikedVideoOfUser(this.currentUserID, this.limit).subscribe((data) => {
       this.likedVideos = data;
+      let time = this.likedVideos[0].likedVideoTime;
+      console.log(time);
+      for (let i = 1; i < this.likedVideos.length; i++) {
+        if (this.likedVideos[i].likedVideoTime === time) {
+          this.likedVideos[i].likedVideoTime = '';
+        } else {
+          time = this.likedVideos[i].likedVideoTime;
+        }
+      }
     });
   }
 }

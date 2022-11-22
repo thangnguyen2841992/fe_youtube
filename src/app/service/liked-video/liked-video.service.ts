@@ -14,8 +14,8 @@ export class LikedVideoService {
   constructor(private http: HttpClient) {
   }
 
-  getAllLikedVideoOfUser(userId: number): Observable<LikedVideo[]> {
-    return this.http.get<LikedVideo[]>(`${API_URL}/user/${userId}`);
+  getAllLikedVideoOfUser(userId: number, limit: number): Observable<LikedVideo[]> {
+    return this.http.get<LikedVideo[]>(`${API_URL}/user/${userId}?limit=${limit}`);
   }
   addNewLikedVideo(userId: number, videoId: number): Observable<LikedVideo> {
     return this.http.post(`${API_URL}/addLikedVideo/user/${userId}/video/${videoId}`, userId);

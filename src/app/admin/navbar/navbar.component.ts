@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../service/auth/auth.service';
 import {UserService} from '../../service/user/user.service';
+import {Router} from '@angular/router';
 import {User} from '../../model/user';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-navbar-user',
-  templateUrl: './navbar-user.component.html',
-  styleUrls: ['./navbar-user.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class NavbarUserComponent implements OnInit {
+export class NavbarComponent implements OnInit {
   loggedIn: boolean;
   currentUserId = 0;
   user: User = {};
@@ -18,7 +18,6 @@ export class NavbarUserComponent implements OnInit {
   searchForm: FormGroup = new FormGroup({
     name: new FormControl(this.name, [Validators.required])
   });
-
   constructor(private authService: AuthService,
               private userService: UserService,
               private router: Router) {
@@ -66,4 +65,5 @@ export class NavbarUserComponent implements OnInit {
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate([currentUrl]);
   }
+
 }
