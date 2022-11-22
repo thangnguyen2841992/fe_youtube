@@ -20,22 +20,24 @@ import { SearchByNameComponent } from './search-by-name/search-by-name.component
 import { LikedVideoComponent } from './liked-video/liked-video.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {MatCardModule} from '@angular/material';
+import {AdminModule} from '../admin/admin.module';
 
 
 @NgModule({
   declarations: [HomeComponent, VideoCreateComponent, TestComponent, VideoDetailsComponent, FindVideoByHastagComponent, CardVideoDetailsComponent, WatchedVideoComponent, SearchByNameComponent, LikedVideoComponent],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    ReactiveFormsModule,
-    SharedModule,
-    FormsModule,
-    AngularFirestoreModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    ScrollingModule,
-    InfiniteScrollModule,
-    MatCardModule
-  ],
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        ReactiveFormsModule,
+        SharedModule,
+        FormsModule,
+        AngularFirestoreModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        ScrollingModule,
+        InfiniteScrollModule,
+        MatCardModule,
+        AdminModule
+    ],
   providers: [
     AngularFireStorage
   ],

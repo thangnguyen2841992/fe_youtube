@@ -10,57 +10,42 @@
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:300px">
-  <h3>Nội dung của kênh</h3>
-  <div class="container_swap" *ngFor="let video of watchedVideos, index as i">
-    <!--      <h4>{{video.watchedTime}}</h4>-->
-    <div class="left">
-      <div class="col-md-4 col-sm-4 mb-4 pb-2" >
-        <div>
-          <h4 *ngIf="video.watchedTime !== '' ">{{video.watchedTime}}</h4>
-
-        </div>
-        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" >
-          <div class="list-card-image">
-            <a  routerLink="/video/{{video.video.id}}" style="cursor: pointer">
-              <video width="415" height="240"  >
-                <source src="{{video.video.url}}" type="video/mp4">
-              </video>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="right" *ngIf="video.watchedTime !== ''">
-      <div class="list-card-body">
-        <h4 class="mb-1"><a class="text-black">{{video.video.name}}</a></h4>
-        <div class="container_swap1">
-          <div class="div_left1">
-            <a><h5 class="text-gray mb-3 "><img src="http://localhost:8080/image/{{video.video.user.avatar}}"
-                                                style="width: 40px; border-radius: 50%"> {{video.video.user.studioName}}
-              <i style="font-size: 13px" class="fa-solid fa-circle-check"></i></h5></a>
-          </div>
-        </div>
-        <div>
-        </div>
-      </div>
-
-    </div>
-    <div class="right1" *ngIf="video.watchedTime === ''">
-      <div class="list-card-body">
-        <h4 class="mb-1"><a class="text-black">{{video.video.name}}</a></h4>
-        <div class="container_swap1">
-          <div class="div_left1">
-            <a><h5 class="text-gray mb-3 "><img src="http://localhost:8080/image/{{video.video.user.avatar}}"
-                                                style="width: 40px; border-radius: 50%"> {{video.video.user.studioName}}
-              <i style="font-size: 13px" class="fa-solid fa-circle-check"></i></h5></a>
-          </div>
-        </div>
-        <div>
-        </div>
-      </div>
-
-    </div>
+<div  class="w3-main" style="margin-left:300px">
+  <h3 style="margin-left: 50px">Nội dung của kênh</h3>
+  <br>
+  <div class="table">
+    <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">Video</th>
+      <th scope="col">Chế độ hiển thị</th>
+      <th scope="col">Hạn chế</th>
+      <th scope="col">Ngày</th>
+      <th scope="col">Số lượt xem</th>
+      <th scope="col">Số bình luận</th>
+      <th scope="col">Lượt thích(%)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+    </tbody>
+    </table>
   </div>
 </div>
 <script>

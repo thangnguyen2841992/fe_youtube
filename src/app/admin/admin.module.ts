@@ -10,12 +10,16 @@ import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-  declarations: [StudioComponent, SidebarComponent, NavbarComponent],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    SharedModule,
-    ReactiveFormsModule
-  ]
+    declarations: [StudioComponent, SidebarComponent, NavbarComponent],
+  exports: [
+    NavbarComponent,
+    SidebarComponent
+  ],
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        SharedModule,
+        ReactiveFormsModule
+    ]
 })
 export class AdminModule { }
