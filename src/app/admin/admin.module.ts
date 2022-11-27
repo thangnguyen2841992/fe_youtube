@@ -7,10 +7,12 @@ import {SharedModule} from '../shared/shared.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material';
+import { NavStudioComponent } from './nav-studio/nav-studio.component';
 
 
 @NgModule({
-    declarations: [StudioComponent, SidebarComponent, NavbarComponent],
+    declarations: [StudioComponent, SidebarComponent, NavbarComponent, NavStudioComponent],
   exports: [
     NavbarComponent,
     SidebarComponent
@@ -19,7 +21,8 @@ import {ReactiveFormsModule} from '@angular/forms';
         CommonModule,
         AdminRoutingModule,
         SharedModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatCheckboxModule
     ]
 })
 export class AdminModule { }

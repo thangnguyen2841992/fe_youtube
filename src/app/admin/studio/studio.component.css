@@ -1,0 +1,24 @@
+#table-studio{
+  width: 1600px;
+}
+#studio-video{
+  width: 400px;
+}
+.studio-option {
+  width: 150px;
+}
+.container_swap{
+  width: 400px;
+}
+.left {
+  float: left;
+  width: 130px;
+}
+.right {
+  float: left;
+  width: 270px;
+}
+#video-name{
+  font-size: 17px;
+  margin-left: 30px;
+}

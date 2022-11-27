@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <h5 *ngIf="!isCheckAllVideoId" class="navbar-brand" href="#">Đã chọn {{totalVideoID}}</h5>
+    <h5 *ngIf="isCheckAllVideoId" class="navbar-brand" href="#">Đã chọn {{totalVideoID}} (Chọn tất cả)</h5>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav" style="margin-left: 100px">
+        <li style="margin-left: 100px" class="nav-item dropdown">
+          <a class="navbar-brand dropdown-toggle" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Chỉnh sửa
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li ><a class="dropdown-item" href="#">Tiêu đề</a></li>
+            <li><a class="dropdown-item" href="#">Mô tả</a></li>
+            <li><a class="dropdown-item" href="#">Thẻ</a></li>
+            <li><a class="dropdown-item" href="#">Chế độ hiển thị</a></li>
+            <li><a class="dropdown-item" href="#">Đối tượng nguười xem</a></li>
+          </ul>
+        </li>
+        <li style="margin-left: 100px" class="nav-item dropdown">
+          <a class="navbar-brand dropdown-toggle"id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Thêm vào danh sách phát
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+
+        <li style="margin-left: 100px" class="nav-item dropdown">
+          <a class="navbar-brand dropdown-toggle" id="navbarDropdownMenuLink3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Thao tác khác
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Tải xuống</a></li>
+            <li><a class="dropdown-item"  data-toggle="modal" data-target="#delete-voucher-modal">Xóa vĩnh viễn</a></li>
+          </ul>
+        </li>
+      </ul>
+      <h5 class="navbar-brand" style="float: right; margin-left: 460px">X</h5>
+
+    </div>
+  </div></nav>
+<div class="modal fade" id="delete-voucher-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Bạn chắc chắn muốn xóa {{totalVideoID}} video này chứ?</h5>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button type="submit" class="btn btn-danger" data-dismiss="modal" (click)="deleteVideo()">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>

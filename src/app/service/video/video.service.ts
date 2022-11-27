@@ -15,6 +15,10 @@ export class VideoService {
   constructor(private http: HttpClient) {
   }
 
+  getAllVideoCreatedOfUser(userId: number): Observable<VideoResponse[]> {
+    return  this.http.get<VideoResponse[]>(`${API_URL}/user/${userId}`);
+  }
+
   getAllVideo(userId: number): Observable<VideoResponse[]> {
     return this.http.get<VideoResponse[]>(`${API_URL}/all/user/${userId}`);
   }
@@ -46,5 +50,7 @@ export class VideoService {
   searchByName(q: string): Observable<VideoResponse[]> {
     return this.http.get<VideoResponse[]>(`${API_URL}/searchByName?q=${q}`);
   }
-
+  deleteListVideo(videoIds: number[]): Observable<any> {
+    return this.http.post(`${API_URL}/deleteVideo`, videoIds);
+  }
 }

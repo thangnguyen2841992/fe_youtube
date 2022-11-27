@@ -19,6 +19,8 @@ import {ShowAllReplyComment} from '../../model/show-all-reply-comment';
 import {LikeReplyService} from '../../service/like-reply/like-reply.service';
 import {IsLikeComment} from '../../model/is-like-comment';
 import {LikedVideoService} from '../../service/liked-video/liked-video.service';
+import {isLineBreak} from 'codelyzer/angular/sourceMappingVisitor';
+import {ViewService} from '../../service/view/view.service';
 
 @Component({
   selector: 'app-video-details',
@@ -52,6 +54,10 @@ export class VideoDetailsComponent implements OnInit {
     isShowAllReply: false
   };
   isLikeComment: IsLikeComment;
+  currentTime: number;
+  isCheckWatchedTime = false;
+  currentTimeList: number[] = [];
+
   constructor(private activatedRoute: ActivatedRoute,
               private videoService: VideoService,
               private authService: AuthService,
@@ -65,7 +71,8 @@ export class VideoDetailsComponent implements OnInit {
               private userService: UserService,
               private replyService: ReplyService,
               private likeReplyService: LikeReplyService,
-              private likedVideoService: LikedVideoService) {
+              private likedVideoService: LikedVideoService,
+              private viewService: ViewService) {
     this.currentUserId = this.authService.currentUserValue.id;
 
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
@@ -288,11 +295,28 @@ export class VideoDetailsComponent implements OnInit {
       this.getVideoByVideoId(this.videoId);
     });
   }
+
   showListCommentOrderByTotalLike() {
     this.commentService.showListCommentOrderByTotalLike(this.videoId).subscribe((data) => {
       this.comments = data;
     });
   }
 
+
+  setCurrentTime(data) {
+    this.currentTime = data.target.currentTime;
+    if (this.currentTime > 4 && this.currentTime < 4.3) {
+      console.log(this.currentTime);
+      this.addNewView();
+    }
+  }
+  addNewView() {
+    const viewForm = {
+      videoId: this.videoId,
+      currentUserID : this.currentUserId
+    };
+    this.viewService.addNewView(viewForm).subscribe((data) => {
+    });
+  }
 
 }

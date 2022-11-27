@@ -13,7 +13,7 @@
     <div class="col-md-9 col-sm-6 mb-4 pb-2">
       <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
         <div class="list-card-image" *ngFor="let video1 of videos1">
-          <video (ended)="checkVideoEnd()" (click)="checkIsPlayVideo()" width="1200" height="675" controls
+          <video (ended)="checkVideoEnd()" (click)="checkIsPlayVideo()" (timeupdate)="setCurrentTime($event)" width="1200" height="675" controls
                  id="videoPlayer">
             <!--                      <button><i class="fa-solid fa-play"></i></button>-->
 
