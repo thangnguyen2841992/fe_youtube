@@ -3,6 +3,7 @@ import {VideoResponse} from '../../model/video-response';
 import {VideoService} from '../../service/video/video.service';
 import {AuthService} from '../../service/auth/auth.service';
 import {element} from 'protractor';
+import {CheckedCheckbox} from '../../model/checked-checkbox';
 
 @Component({
   selector: 'app-studio',
@@ -21,6 +22,7 @@ export class StudioComponent implements OnInit {
               private authService: AuthService) {
     this.currentUserId = this.authService.currentUserValue.id;
   }
+  isChecked: CheckedCheckbox[] = [];
 
   ngOnInit() {
     this.getAllVideosCreateOfUser();
@@ -54,12 +56,8 @@ export class StudioComponent implements OnInit {
   getAllVideoId() {
     if (this.videoIds.length === 0) {
       // tslint:disable-next-line:prefer-for-of
-      for (let i = 0; i < this.videos.length; i++) {
+      for (var i = 0; i < this.videos.length; i++) {
         this.videoIds.push(this.videos[i].id);
-        // const checkbox = document.getElementById(
-        //   'flexCheckDefault' + i ,
-        // ) as HTMLInputElement | null;
-        // checkbox.checked = true;
       }
       this.isCheckAllVideoID = true;
 
@@ -69,6 +67,7 @@ export class StudioComponent implements OnInit {
 
     }
     this.isCheckAll = !this.isCheckAll;
+
     this.totalVideoId = this.videoIds.length;
     console.log(this.videoIds);
   }
