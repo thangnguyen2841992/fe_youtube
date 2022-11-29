@@ -25,54 +25,42 @@
         </div>
         <div class="p-3 position-relative">
           <div class="list-card-body">
-            <h4 class="mb-1"><a class="text-black">{{video.name}}</a></h4>
+            <h2 class="mb-1"><a class="text-black">{{video.name}}</a></h2>
             <div class="container_swap">
 <!--              <div class="div_left">-->
 <!--                <a class="text-gray mb-3 "><img src="http://localhost:8080/image/{{video.user.avatar}}"-->
 <!--                                                style="width: 40px; border-radius: 50%"> <h5 style="font-size: 15px" >{{video.user.studioName}} <i class="fa-solid fa-circle-check"></i> </h5> </a>-->
 <!--              </div>-->
-              <div class="profile_photo" style="margin-top: 10px">
+              <div class="profile_photo">
                 <img src="http://localhost:8080/image/{{video.user.avatar}}" style="width: 40px; border-radius: 50%">
-                <b>
+                <b style="font-size: 19px">
                   {{video.user.studioName}}
                 </b>
                 <b>
                   <i class="fa-solid fa-circle-check"></i>
                 </b>
-<b>
-  <div class="dropdown">
-    <a style="margin-top: 10px" *ngIf="checkSubscriber" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown"
-       aria-haspopup="true" aria-expanded="false">
-      Đã đăng ký
-    </a>
+                <b style="margin-left: 10px" *ngIf="!checkSubscriber" (click)="addNewMember(video.user.id, currentUserId)" class="btn btn-dark">
+                  Đăng ký
+                </b>
+<b style="margin-left: 10px" *ngIf="checkSubscriber" class="dropdown btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+   Đã đăng ký
     <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-default dropdown-item" data-toggle="modal"
+      <button  type="button" class="btn btn-default dropdown-item" data-toggle="modal"
               data-target="#unSubscribe">
         Hủy đăng ký
       </button>
       <!-- Modal -->
     </div>
-  </div>
 </b>
-
+                <b style="margin-left: 90px" *ngIf="checkSubscriber"><i id="bell" class="fa-solid fa-bell"></i>
+                </b>
               </div>
               <div class="div_left_studio">
-
-                <p id="date-created" class="text-gray mb-3 time">{{video.totalSubscriber}} người đăng ký</p>
-                <h5 style="margin-left: 8px" id="date-created1" class="text-gray mb-3 time">{{video.totalView}} lượt xem - {{video.dateCreated}}</h5>
-                <h5 style="margin-left: -95px">{{video.description}}</h5>
-              </div>
-
-
-              <div class="div_left1">
-                <button *ngIf="!checkSubscriber"
-                        (click)="addNewMember(video.user.id, currentUserId)" class="btn btn-dark" id="subcrise">Đăng ký
-                </button>
-
-              </div>
-              <div *ngIf="checkSubscriber" class="div_left2">
-                <i id="bell" class="fa-solid fa-bell"></i>
+                <b  id="date-created" class="text-gray mb-3 time">{{video.totalSubscriber}} người đăng ký</b>
+                <br>
+                <b style="font-size: 19px" id="date-created1" class="text-gray mb-3 time">{{video.totalView}} lượt xem - {{video.dateCreated}}</b>
+                <h5  style="width: 500px;margin-left: -14px">{{video.description}}</h5>
               </div>
               <div class="div_right1">
                 <button (click)="addNewLike(videoId, currentUserId)" class="btn btn-default"><i *ngIf="!isLikeVideo"
