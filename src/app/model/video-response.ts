@@ -7,6 +7,8 @@ export interface VideoResponse {
 
   name?: string;
 
+  description?: string;
+
   url?: string;
 
   dateCreated?: string;

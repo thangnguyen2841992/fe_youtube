@@ -33,6 +33,7 @@ export class VideoCreateComponent implements OnInit {
   videoForm: FormGroup = new FormGroup({
     hastag: new FormControl(this.hastagDefault.id, [Validators.required]),
     name: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required])
   });
 
   ngOnInit() {
@@ -59,14 +60,15 @@ export class VideoCreateComponent implements OnInit {
           const videoForm = {
             name: this.videoForm.value.name,
 
+            description: this.videoForm.value.description,
+
             url: this.videoLink,
 
             playListId: this.videoForm.value.playListId,
 
-
             hastagId: this.videoForm.value.hastag,
 
-            userId : this.currentUserId
+            userId: this.currentUserId
           };
 
           this.videoService.createNewVideo(videoForm).subscribe(() => {
@@ -76,6 +78,7 @@ export class VideoCreateComponent implements OnInit {
       })
     ).subscribe();
   }
+
   getCurrentDateTime(): string {
     return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
   }
