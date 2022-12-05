@@ -9,10 +9,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material';
 import { NavStudioComponent } from './nav-studio/nav-studio.component';
+import { PlaylistComponent } from './playlist/playlist.component';
 
 
 @NgModule({
-    declarations: [StudioComponent, SidebarComponent, NavbarComponent, NavStudioComponent],
+    declarations: [StudioComponent, SidebarComponent, NavbarComponent, NavStudioComponent, PlaylistComponent],
   exports: [
     NavbarComponent,
     SidebarComponent

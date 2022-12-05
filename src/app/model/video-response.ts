@@ -28,4 +28,6 @@ export interface VideoResponse {
   totalComment?: number;
   totalView?: number;
 
+  select?: boolean;
+
 }

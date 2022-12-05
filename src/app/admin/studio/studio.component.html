@@ -14,13 +14,13 @@
 <div class="w3-main" style="margin-left:300px">
   <h3 style="margin-left: 50px">Nội dung của kênh</h3>
   <br>
-  <app-nav-studio [totalVideoID]="totalVideoId" [isCheckAllVideoId]="isCheckAllVideoID" [videoIDs]="videoIds" [currentUserId]="currentUserId" ></app-nav-studio>
+  <app-nav-studio *ngIf="isShowNavStudio" [totalVideoID]="totalVideoId" [isCheckAllVideoId]="isCheckAllVideoID" [videoIDs]="videoIds" [currentUserId]="currentUserId" ></app-nav-studio>
   <div class="table">
     <table id="table-studio" class="table table-hover">
       <thead>
       <tr>
         <th  width="10">  <div style="margin-bottom: 23px" class="form-check">
-          <input [checked]="isCheckAll" class="form-check-input" type="checkbox" (change)="getAllVideoId()">
+          <input [checked]="isCheckAllVideoID" class="form-check-input" type="checkbox" (change)="getAllVideoId()">
         </div></th>
         <th id="studio-video" scope="col">Video</th>
         <th class="studio-option" scope="col">Chế độ hiển thị</th>
@@ -35,25 +35,19 @@
       <tr *ngFor="let video of videos, index as i">
         <td>
           <div class="form-check">
-            <input class="form-check-input" (change)="onCheck(video.id)" [checked]="isCheckAll" type="checkbox" value="{{video.id}}" id="{{'flexCheckDefault' + i}}">
-<!--            <input *ngIf="isCheckAll" type="checkbox" value="{{video.id}}" checked>-->
+            <input class="form-check-input" (change)="onCheck(video.id)" [checked]="video.select" type="checkbox" value="{{video.id}}" id="{{'flexCheckDefault' + i}}">
           </div>
         </td>
         <td>
-
           <div class="container_swap">
             <div class="left">
-
               <div class="list-card-image">
-
                 <a routerLink="/video/{{video.id}}" style="cursor: pointer">
                   <video width="150" height="100">
                     <source src="{{video.url}}" type="video/mp4">
                   </video>
                 </a>
               </div>
-
-
             </div>
             <div class="right">
               <div class="list-card-body">
@@ -66,14 +60,12 @@
             </div>
           </div>
         </td>
-
         <td>Mark</td>
         <td>Otto</td>
         <td>{{video.dateCreated}}</td>
         <td>{{video.totalView}}</td>
         <td>{{video.totalComment}}</td>
         <td>{{video.totalLike}}</td>
-
       </tr>
       </tbody>
     </table>
@@ -85,7 +77,6 @@
     document.getElementById("mySidebar").style.display = "block";
     document.getElementById("myOverlay").style.display = "block";
   }
-
   function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
@@ -93,26 +84,3 @@
 </script>
 </body>
 </html>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>

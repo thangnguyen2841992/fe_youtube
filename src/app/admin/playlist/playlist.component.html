@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<app-navbar></app-navbar>
+
+<body class="w3-light-grey w3-content" style="max-width:1900px;">
+
+<!-- Sidebar/menu -->
+<app-sidebar></app-sidebar>
+<!-- Overlay effect when opening sidebar on small screens -->
+
+<div class="tittle">
+  <h3 style="margin-left: 350px; float: left">Danh sách phát của kênh</h3>
+  <h4 style=" float: right; cursor: pointer; color: blue; margin-right: 40px"   data-toggle="modal" data-target="#exampleModal">DANH SÁCH PHÁT MỚI</h4>
+</div>
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
+     title="close side menu" id="myOverlay"></div>
+
+<hr>
+<br>
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+  <div class="table" >
+    <table id="table-studio" class="table table-hover">
+      <thead>
+      <tr>
+        <th id="studio-video" scope="col">Danh sách phát</th>
+        <th class="studio-option" scope="col">Ngày cập nhật gần đây nhất</th>
+        <th class="studio-option" scope="col">Ngày</th>
+        <th class="studio-option" scope="col">Số lượng video</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let playList of playLists, index as i">
+        <td>{{playList.name}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  // Script to open and close sidebar
+  function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+  }
+  function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+  }
+</script>
+</body>
+</html>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thêm danh sách phát mới</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="playListForm" (ngSubmit)="createNewPlayList()">
+      <div class="modal-body">
+        <textarea formControlName="name" style="vertical-align:text-top; width: 470px; height: 100px" placeholder="Thêm tiêu đề"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-secondary" data-dismiss="modal">HUỶ</button>
+        <button (click)="createNewPlayList()" type="button" class="btn btn-primary">TẠO</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+

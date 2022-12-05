@@ -14,19 +14,19 @@ export class StudioComponent implements OnInit {
   videos: VideoResponse[] = [];
   currentUserId = 0;
   videoIds: number[] = [];
-  isCheckAll = false;
   isShowNavStudio = false;
   totalVideoId = 0;
   isCheckAllVideoID = false;
+
   constructor(private videoService: VideoService,
               private authService: AuthService) {
     this.currentUserId = this.authService.currentUserValue.id;
   }
+
   isChecked: CheckedCheckbox[] = [];
 
   ngOnInit() {
     this.getAllVideosCreateOfUser();
-    this.getIsShowNavItem();
   }
 
   getAllVideosCreateOfUser() {
@@ -38,16 +38,27 @@ export class StudioComponent implements OnInit {
   onCheck(evt) {
     if (!this.videoIds.includes(evt)) {
       this.videoIds.push(evt);
+      this.videos = this.videos.map((video) => {
+        if (video.id === evt) {
+          video.select = true;
+          return video;
+        }
+        return video;
+      });
       if (this.videoIds.length === this.videos.length) {
-        this.isCheckAllVideoID  = true;
+        this.isCheckAllVideoID = true;
       }
     } else {
       const index = this.videoIds.indexOf(evt);
       if (index > -1) {
         this.videoIds.splice(index, 1);
-        this.isCheckAll = false;
-        this.isCheckAllVideoID  = false;
+        this.isCheckAllVideoID = false;
       }
+    }
+    if (this.videoIds.length > 0) {
+      this.isShowNavStudio = true;
+    } else {
+      this.isShowNavStudio = false;
     }
     this.totalVideoId = this.videoIds.length;
     console.log(this.videoIds);
@@ -56,22 +67,41 @@ export class StudioComponent implements OnInit {
   getAllVideoId() {
     if (this.videoIds.length === 0) {
       // tslint:disable-next-line:prefer-for-of
-      for (var i = 0; i < this.videos.length; i++) {
+      for (let i = 0; i < this.videos.length; i++) {
+        this.videos[i].select = true;
         this.videoIds.push(this.videos[i].id);
       }
       this.isCheckAllVideoID = true;
-
-    } else {
+    } else if (this.videoIds.length < this.videos.length) {
+      // tslint:disable-next-line:prefer-for-of
+      this.videoIds.splice(0, this.videoIds.length);
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.videos.length; i++) {
+        // this.videos[i].select = true;
+        this.videoIds.push(this.videos[i].id);
+      }
+      this.videos = this.videos.map((video) => {
+        video.select = true;
+        return video;
+      });
+      console.log(this.videos);
+      this.isCheckAllVideoID = true;
+    } else if (this.videoIds.length === this.videos.length) {
       this.videoIds.splice(0, this.videoIds.length);
       this.isCheckAllVideoID = false;
-
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.videos.length; i++) {
+        this.videos[i].select = false;
+      }
+      this.isCheckAllVideoID = false;
     }
-    this.isCheckAll = !this.isCheckAll;
-
+    if (this.videoIds.length > 0) {
+      this.isShowNavStudio = true;
+    } else {
+      this.isShowNavStudio = false;
+    }
     this.totalVideoId = this.videoIds.length;
     console.log(this.videoIds);
   }
-  getIsShowNavItem() {
-    this.isShowNavStudio = this.videoIds.length > 0;
-  }
+
 }

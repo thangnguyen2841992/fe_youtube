@@ -1,0 +1,8 @@
+.modal-dialog { left: 45rem !important; top: 4rem }
+
+
+input::placeholder {
+  font-weight: bold;
+  opacity: .5;
+  color: red;
+}
